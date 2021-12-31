@@ -1,11 +1,10 @@
+const path = require('path')
+
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -15,7 +14,7 @@ module.exports = {
       },
     },
   ],
-  "framework": "@storybook/react",
+  framework: '@storybook/react',
   core: {
     builder: 'webpack5',
   },
@@ -24,30 +23,33 @@ module.exports = {
       test: /\.scss$/,
       sideEffects: true,
       use: [
-        "style-loader",
+        'style-loader',
         {
-          loader: "css-loader",
+          loader: 'css-loader',
           options: {
             importLoaders: 2,
           },
         },
         {
-          loader: "postcss-loader",
+          loader: 'postcss-loader',
           options: {
             postcssOptions: {
-              plugins: [require("tailwindcss"), require("autoprefixer")],
+              plugins: [require('tailwindcss'), require('autoprefixer')],
             },
           },
         },
         {
-          loader: "sass-loader",
+          loader: 'sass-loader',
           options: {
             sourceMap: true,
           },
         },
       ],
-    });
-
-    return config;
+    })
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src'),
+    }
+    return config
   },
 }
