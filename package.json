@@ -42,7 +42,7 @@
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",
     "@types/node": "16.11.9",
-    "@types/react": "17.0.35",
+    "@types/react": "17.0.38",
     "autoprefixer": "^10.4.1",
     "babel-loader": "^8.2.3",
     "chromatic": "^6.3.3",
