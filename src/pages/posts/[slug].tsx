@@ -39,7 +39,6 @@ export const getStaticProps = async (context) => {
   const { slug } = context.params
 
   const article = await getPublicPageContentsBySlug(slug)
-  console.log(article.blocks[32])
 
   return {
     props: {
