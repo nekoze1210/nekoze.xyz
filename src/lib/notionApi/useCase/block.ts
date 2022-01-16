@@ -1,6 +1,5 @@
 import { Client } from '@notionhq/client'
 import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
-import code from '@/components/Code'
 import { sleep } from '@/lib/sleep'
 import {
   Article,
@@ -74,9 +73,10 @@ export const getPublicPageContentsBySlug = async (slug: string) => {
   const article: Article = {
     id: page.id,
     slug: slug,
-    description: page.properties.Description.rich_text[0]?.plain_text,
-    ogImageUrl: page.properties.ogImageUrl.rich_text[0]?.plain_text,
-    tags: page.properties.Tag.multi_select.map((_: TODO) => _.name),
+    title: page.properties.Page.title[0]?.plain_text || '',
+    description: page.properties.Description.rich_text[0]?.plain_text || '',
+    ogImageUrl: page.properties.ogImageUrl.rich_text[0]?.plain_text || '',
+    tags: page.properties.Tag.multi_select.map((_: TODO) => _.name || ''),
     date: page.properties.Date.created_time,
     isPublished: true,
     blocks: articleBlocks,
@@ -142,12 +142,12 @@ const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
         case 'quote':
           return {
             ...articleBlock,
-            text: block.quote.text[0].plain_text,
+            text: block.quote.text[0].plain_text || '',
           } as Quote
         case 'code':
           return {
             ...articleBlock,
-            text: block.code.text[0].plain_text,
+            text: block.code.text[0].plain_text || '',
             language: block.code.language,
           } as Code
         case 'bulleted_list_item':
@@ -167,6 +167,7 @@ const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
           } as Image
         default:
           console.warn(`⚠️ unsupported block type: ${block.type}`)
+          return null
       }
     })
     .filter(notNull)
