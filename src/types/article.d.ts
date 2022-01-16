@@ -98,6 +98,7 @@ export type List = {
 export type Article = {
   id: string
   slug: string
+  title: string
   tags: Tag[]
   date: Date
   isPublished: boolean
