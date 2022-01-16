@@ -28,7 +28,6 @@ export default Home
 
 export const getStaticProps = async () => {
   const posts = await listPublicPages()
-  console.log(posts)
   return {
     props: {
       posts: posts,
