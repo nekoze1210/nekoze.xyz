@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import React from 'react'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/lib/notionApi/useCase'
 
+// @ts-ignore
 const Post: NextPage = ({ post }) => {
   if (!post) {
     return <div>ページが存在しません</div>
@@ -35,7 +36,8 @@ const Post: NextPage = ({ post }) => {
 }
 
 export default Post
-export const getStaticProps = async (context) => {
+
+export const getStaticProps = async (context: { params: { slug: string } }) => {
   const { slug } = context.params
 
   const article = await getPublicPageContentsBySlug(slug)

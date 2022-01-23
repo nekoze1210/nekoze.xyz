@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { listPublicPages, listPublicPagesByTag } from '@/lib/notionApi/useCase'
 
+// @ts-ignore
 const Tags: NextPage = ({ posts }) => {
   return (
     <div>
@@ -30,7 +31,6 @@ export const getStaticProps = async (context: { params: { tagName: string } }) =
   const { tagName } = context.params
 
   const posts = await listPublicPagesByTag(tagName)
-  console.log(posts)
   return {
     props: {
       posts,

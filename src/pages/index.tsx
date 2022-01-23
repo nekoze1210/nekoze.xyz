@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { listPublicPages } from '@/lib/notionApi/useCase'
 
+// @ts-ignore
 const Home: NextPage = ({ posts }) => {
   return (
     <div>
