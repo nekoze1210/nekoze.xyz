@@ -6,10 +6,6 @@ describe('Home', () => {
   it('renders a heading', () => {
     render(<Home />)
 
-    const heading = screen.getByRole('heading', {
-      name: /Top page/i,
-    })
-
-    expect(heading).toBeInTheDocument()
+    expect(screen.getAllByRole('list')).toBeTruthy()
   })
 })
