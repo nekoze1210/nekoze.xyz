@@ -5,6 +5,8 @@ import { listPublicPages } from '@/lib/notionApi/useCase'
 
 // @ts-ignore
 const Home: NextPage = ({ posts }) => {
+  const articles = posts || []
+
   return (
     <div>
       <Head>
@@ -12,10 +14,10 @@ const Home: NextPage = ({ posts }) => {
       </Head>
       <main>
         <ul>
-          {posts.map((post: any) => {
+          {articles.map((article: any) => {
             return (
-              <Link href={`posts/${encodeURIComponent(post.slug)}`} key={post.id}>
-                <li key={post.id}>{post.title}</li>
+              <Link href={`posts/${encodeURIComponent(article.slug)}`} key={article.id}>
+                <li key={article.id}>{article.title}</li>
               </Link>
             )
           })}
