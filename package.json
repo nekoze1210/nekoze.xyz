@@ -15,7 +15,7 @@
     "lint-staged": "lint-staged",
     "prepare": "husky install",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "chromatic": "npx chromatic --project-token=89d2d6a5a458"
+    "chromatic": "npx chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@commitlint/cli": "^16.0.1",
