@@ -20,7 +20,7 @@
   "dependencies": {
     "@commitlint/cli": "^16.1.0",
     "@commitlint/config-conventional": "^16.0.0",
-    "next": "12.0.9",
+    "next": "12.0.10",
     "@notionhq/client": "^0.4.13",
     "postcss-import": "^14.0.2",
     "react": "17.0.2",
