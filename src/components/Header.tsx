@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import DarkModeButton from '@/components/DarkModeButton'
 
 export const Header = () => {
@@ -5,16 +6,24 @@ export const Header = () => {
     <>
       <nav
         className={
-          'container mx-auto flex flex-wrap items-center text-white mt-10 flex justify-between space-x-3'
+          'text-black dark:text-white flex flex-wrap items-center justify-between space-x-3'
         }
       >
-        <img
-          src='https://avatars.githubusercontent.com/u/14988862?v=4'
-          className={'rounded-full h-10 w-10'}
-          alt={'logo'}
-        />
-        <h1 className={'flex-1 text-3xl dark:text-white text-black'}>Blog</h1>
-        <DarkModeButton />
+        <Link href={'/'}>
+          <a>
+            <img
+              src='https://avatars.githubusercontent.com/u/14988862?v=4'
+              className={'rounded-full h-10 w-10'}
+              alt={'logo'}
+            />
+          </a>
+        </Link>
+        <Link href={'/'}>
+          <a className={'flex-1 text-3xl'}>Blog</a>
+        </Link>
+        <div>
+          <DarkModeButton />
+        </div>
       </nav>
     </>
   )

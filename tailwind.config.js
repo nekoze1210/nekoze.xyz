@@ -10,10 +10,10 @@ module.exports = {
         'wild-sand': '#F5F5F5',
       },
       width: {
-        '510px': '510px',
+        '600px': '600px',
       },
       maxWidth: {
-        '510px': '510px',
+        '600px': '600px',
       },
     },
   },
