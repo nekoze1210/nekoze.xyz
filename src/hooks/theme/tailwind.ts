@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 
-export type TailwindTheme = (isDark?: boolean) => {
-  isDark: Boolean
+export type UseTailwindTheme = (isDark?: boolean) => {
+  isDark: boolean
   toggle: (isDark?: boolean) => void
 }
 
-export const useTailwindTheme: TailwindTheme = (isInitiallyDarkMode = false) => {
-  const [isDark, toggleTheme] = useState<Boolean>(isInitiallyDarkMode)
+export const useTailwindTheme: UseTailwindTheme = (isInitiallyDarkMode = false) => {
+  const [isDark, toggleTheme] = useState<boolean>(isInitiallyDarkMode)
   const toggle = useCallback((isDark?) => {
     if (typeof isDark === 'undefined') {
-      toggleTheme((state: Boolean) => !state)
+      toggleTheme((state: boolean) => !state)
       return
     }
     toggleTheme(isDark)
