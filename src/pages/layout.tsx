@@ -5,11 +5,11 @@ import Header from '@/components/Header'
 const Layout = ({ children }: Props) => {
   return (
     <>
-      <div className={'my-3 container mx-auto p-3'}>
+      <div className={'container mx-auto my-3 p-3'}>
         <Header />
       </div>
-      <div className={'h-screen'}>{children}</div>
-      <div className={'bottom-0 container mx-auto '}>
+      <div className={'min-h-screen'}>{children}</div>
+      <div className={'container mx-auto my-3'}>
         <Footer />
       </div>
     </>
