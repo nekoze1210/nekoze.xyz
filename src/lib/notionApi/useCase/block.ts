@@ -76,6 +76,7 @@ export const getPublicPageContentsBySlug = async (slug: string) => {
     title: page.properties.Page.title[0]?.plain_text || '',
     description: page.properties.Description.rich_text[0]?.plain_text || '',
     ogImageUrl: page.properties.ogImageUrl.rich_text[0]?.plain_text || '',
+    thumbnailImageUrl: page.properties.thumbnailImageUrl.rich_text[0]?.plain_text || '',
     tags: page.properties.Tag.multi_select.map((_: TODO) => _.name || ''),
     date: page.properties.Date.created_time,
     isPublished: true,

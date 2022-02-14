@@ -103,6 +103,7 @@ export type Article = {
   date: Date
   isPublished: boolean
   ogImageUrl: string
+  thumbnailImageUrl: string
   description: string
   blocks: BlockObjects
 }
