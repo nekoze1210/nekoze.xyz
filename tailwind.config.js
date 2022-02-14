@@ -8,6 +8,8 @@ module.exports = {
       colors: {
         'cod-gray': '#151414',
         'wild-sand': '#F5F5F5',
+        abbey: '#424346',
+        aluminium: '#A2A5AC',
       },
       width: {
         '600px': '600px',
