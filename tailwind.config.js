@@ -12,10 +12,10 @@ module.exports = {
         aluminium: '#A2A5AC',
       },
       width: {
-        '600px': '600px',
+        '806px': '806px',
       },
       maxWidth: {
-        '600px': '600px',
+        '806px': '806px',
       },
     },
   },

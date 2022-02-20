@@ -41,6 +41,7 @@ export type BlockType = BlockTuple[number]
 export type BlockObject = {
   id: string
   type: BlockType
+  isChild: boolean
 }
 
 export type BlockObjects = (Heading | Divider | Quote | ToDo | List)[]
@@ -61,10 +62,12 @@ export type Text = {
 }
 
 export type Paragraph = {
-  text: Text[] | []
+  type: 'paragraph'
+  texts: Text[] | []
 } & BlockObject
 
 export type Heading = {
+  type: 'heading_1' | 'heading_2' | 'heading_3'
   text: string | '' // TODO: type alias "Text" に変換できるようにする
   heading_type: 'heading_1' | 'heading_2' | 'heading_3'
 } & BlockObject
@@ -89,13 +92,14 @@ export type Image = {
 } & BlockObject
 
 export type List = {
+  type: 'numbered_list_item' | 'bulleted_list_item'
   listType: 'bulleted' | 'numbered'
   text: string | '' // TODO: type alias "Text" に変換できるようにする
   hasChildren: boolean
-  children: BlockObjects | []
-}
+  childrenBlocks: BlockObjects | []
+} & BlockObject
 
-export type Article = {
+export type Post = {
   id: string
   slug: string
   title: string

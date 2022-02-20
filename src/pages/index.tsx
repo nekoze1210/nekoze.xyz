@@ -25,7 +25,7 @@ const Home: NextPage = ({ posts }) => {
                   <Link href={`/posts/${encodeURIComponent(article.slug)}`} key={article.id}>
                     <a href='#'>
                       <img
-                        className='rounded-t-lg object-contain h-48 w-600px bg-wild-sand dark:bg-cod-gray'
+                        className='rounded-t-lg object-contain h-48 w-806px bg-wild-sand dark:bg-cod-gray'
                         src={article.thumbnailImageUrl}
                         alt=''
                       />
