@@ -94,7 +94,7 @@ export type Image = {
 export type List = {
   type: 'numbered_list_item' | 'bulleted_list_item'
   listType: 'bulleted' | 'numbered'
-  texts: Text[]
+  texts: Text[] | []
   hasChildren: boolean
   childrenBlocks: BlockObjects | []
 } & BlockObject
