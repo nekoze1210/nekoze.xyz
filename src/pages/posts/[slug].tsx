@@ -55,7 +55,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-4' key={heading.id}>
           <HeadingBlock
             id={heading.id}
-            text={heading.text}
+            texts={heading.texts}
             heading_type={heading.heading_type}
             type={heading.type}
             isChild={heading.isChild}
@@ -69,7 +69,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-3' key={list.id}>
           <ListBlock
             id={list.id}
-            text={list.text}
+            texts={list.texts}
             listType={list.listType}
             childrenBlocks={list.childrenBlocks}
             hasChildren={list.hasChildren}
@@ -102,7 +102,7 @@ const renderPostBlock = (block: BlockObject) => {
       const quote = block as Quote
       return (
         <div className='mb-3' key={quote.id}>
-          <QuoteBlock id={quote.id} text={quote.text} type={quote.type} isChild={quote.isChild} />
+          <QuoteBlock id={quote.id} texts={quote.texts} type={quote.type} isChild={quote.isChild} />
         </div>
       )
     case 'to_do':
@@ -111,7 +111,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-4' key={todo.id}>
           <TodoBlock
             id={todo.id}
-            text={todo.text}
+            texts={todo.texts}
             isChild={todo.isChild}
             isChecked={todo.isChecked}
             type={todo.type}

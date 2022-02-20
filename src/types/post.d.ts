@@ -68,16 +68,16 @@ export type Paragraph = {
 
 export type Heading = {
   type: 'heading_1' | 'heading_2' | 'heading_3'
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
   heading_type: 'heading_1' | 'heading_2' | 'heading_3'
 } & BlockObject
 
 export type Quote = {
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
 } & BlockObject
 
 export type ToDo = {
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
   isChecked: boolean
 } & BlockObject
 
@@ -88,13 +88,13 @@ export type Code = {
 
 export type Image = {
   url: string
-  caption: string | '' // TODO: type alias "Text" に変換できるようにする
+  caption: Text[] | []
 } & BlockObject
 
 export type List = {
   type: 'numbered_list_item' | 'bulleted_list_item'
   listType: 'bulleted' | 'numbered'
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
   hasChildren: boolean
   childrenBlocks: BlockObjects | []
 } & BlockObject

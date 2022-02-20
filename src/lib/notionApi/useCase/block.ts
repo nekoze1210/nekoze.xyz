@@ -121,7 +121,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
         case 'heading_3':
           return {
             ...articleBlock,
-            text: block[block.type].text[0].plain_text,
+            texts: block[block.type].text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
             heading_type: block.type,
           } as Heading
         case 'paragraph':
@@ -139,12 +145,24 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
           return {
             ...articleBlock,
             isChecked: block.to_do.checked,
-            text: block.to_do.text[0]?.plain_text || '',
+            texts: block.to_do.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
           } as ToDo
         case 'quote':
           return {
             ...articleBlock,
-            text: block.quote.text[0].plain_text || '',
+            texts: block.quote.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
           } as Quote
         case 'code':
           return {
@@ -156,7 +174,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
         case 'numbered_list_item':
           return {
             ...articleBlock,
-            text: block[block.type]?.text.map((text: TODO) => text.plain_text).join(''),
+            texts: block[block.type]?.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
             listType: block.type === 'bulleted_list_item' ? 'bulleted' : 'numbered',
             hasChildren: block.has_children,
             childrenBlocks: block.has_children
@@ -167,7 +191,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
           return {
             ...articleBlock,
             url: block.image.file.url,
-            caption: block.image.caption.map((caption: TODO) => caption.plain_text).join(''),
+            caption: block.image.caption.map((caption: TODO) => {
+              return {
+                content: caption.plain_text,
+                annotations: { ...caption.annotations },
+                link: caption.href,
+              } as Text
+            }),
           } as Image
         default:
           console.warn(`⚠️ unsupported block type: ${block.type}`)
