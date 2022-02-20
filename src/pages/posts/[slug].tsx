@@ -55,7 +55,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-4' key={heading.id}>
           <HeadingBlock
             id={heading.id}
-            text={heading.text}
+            texts={heading.texts}
             heading_type={heading.heading_type}
             type={heading.type}
             isChild={heading.isChild}

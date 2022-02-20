@@ -68,7 +68,7 @@ export type Paragraph = {
 
 export type Heading = {
   type: 'heading_1' | 'heading_2' | 'heading_3'
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
   heading_type: 'heading_1' | 'heading_2' | 'heading_3'
 } & BlockObject
 

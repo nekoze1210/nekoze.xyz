@@ -121,7 +121,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
         case 'heading_3':
           return {
             ...articleBlock,
-            text: block[block.type].text[0].plain_text,
+            texts: block[block.type].text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
             heading_type: block.type,
           } as Heading
         case 'paragraph':
