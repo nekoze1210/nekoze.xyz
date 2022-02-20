@@ -73,7 +73,7 @@ export type Heading = {
 } & BlockObject
 
 export type Quote = {
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
 } & BlockObject
 
 export type ToDo = {

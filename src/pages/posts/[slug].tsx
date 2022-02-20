@@ -102,7 +102,7 @@ const renderPostBlock = (block: BlockObject) => {
       const quote = block as Quote
       return (
         <div className='mb-3' key={quote.id}>
-          <QuoteBlock id={quote.id} text={quote.text} type={quote.type} isChild={quote.isChild} />
+          <QuoteBlock id={quote.id} texts={quote.texts} type={quote.type} isChild={quote.isChild} />
         </div>
       )
     case 'to_do':

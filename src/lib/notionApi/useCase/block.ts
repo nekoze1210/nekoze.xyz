@@ -150,7 +150,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
         case 'quote':
           return {
             ...articleBlock,
-            text: block.quote.text[0].plain_text || '',
+            texts: block.quote.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
           } as Quote
         case 'code':
           return {
