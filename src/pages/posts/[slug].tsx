@@ -129,7 +129,7 @@ const Post: NextPage = ({ post }) => {
 
   return (
     <div className='bg-white rounded-lg border border-aluminium dark:border-abbey dark:bg-black mt-5 p-5 break-all'>
-      <h1 className='text-2xl'>{post.title}</h1>
+      <h1 className='text-2xl font-bold tracking-tight'>{post.title}</h1>
       <article className='mt-3'>
         {post.blocks.map((block: any) => {
           return renderPostBlock(block)
