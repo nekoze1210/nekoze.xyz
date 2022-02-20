@@ -156,7 +156,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
         case 'numbered_list_item':
           return {
             ...articleBlock,
-            text: block[block.type]?.text.map((text: TODO) => text.plain_text).join(''),
+            texts: block[block.type]?.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
             listType: block.type === 'bulleted_list_item' ? 'bulleted' : 'numbered',
             hasChildren: block.has_children,
             childrenBlocks: block.has_children

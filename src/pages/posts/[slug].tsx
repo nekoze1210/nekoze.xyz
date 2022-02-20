@@ -69,7 +69,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-3' key={list.id}>
           <ListBlock
             id={list.id}
-            text={list.text}
+            texts={list.texts}
             listType={list.listType}
             childrenBlocks={list.childrenBlocks}
             hasChildren={list.hasChildren}

@@ -1,4 +1,5 @@
 import { ReactNode, VFC } from 'react'
+import { TextBlock } from '@/components/postBlocks/Text'
 import { List } from '@/types/post'
 
 export type ListProps = {
@@ -8,10 +9,10 @@ export type ListProps = {
 export const ListBlock: VFC<ListProps> = ({
   id,
   listType,
-  text,
   hasChildren,
   children,
   isChild,
+  texts,
 }) => {
   switch (listType) {
     case 'bulleted':
@@ -19,14 +20,35 @@ export const ListBlock: VFC<ListProps> = ({
       if (isChild) {
         return (
           <li className='ml-4 list-outside'>
-            {text}
+            {texts.map((text, index) => {
+              return (
+                <TextBlock
+                  key={`list_${id}_text_${index}`}
+                  content={text.content}
+                  annotations={text.annotations}
+                  link={text.link}
+                />
+              )
+            })}
+
             {hasChildren ? children : null}
           </li>
         )
       }
       return (
         <ul className='pl-4 list-disc list-outside'>
-          <li>{text}</li>
+          <li>
+            {texts.map((text, index) => {
+              return (
+                <TextBlock
+                  key={`list_${id}_text_${index}`}
+                  content={text.content}
+                  annotations={text.annotations}
+                  link={text.link}
+                />
+              )
+            })}
+          </li>
           {hasChildren ? children : null}
         </ul>
       )
