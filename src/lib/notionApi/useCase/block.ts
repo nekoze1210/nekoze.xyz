@@ -2,7 +2,7 @@ import { Client } from '@notionhq/client'
 import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
 import { sleep } from '@/lib/sleep'
 import {
-  Article,
+  Post,
   BlockObjects,
   BlockType,
   Code,
@@ -13,7 +13,7 @@ import {
   Quote,
   Text,
   ToDo,
-} from '@/types/article'
+} from '@/types/post'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -70,7 +70,7 @@ export const getPublicPageContentsBySlug = async (slug: string) => {
     return block
   })
   const articleBlocks: BlockObjects = toViewModelArticle(blocksWithChildren)
-  const article: Article = {
+  const article: Post = {
     id: page.id,
     slug: slug,
     title: page.properties.Page.title[0]?.plain_text || '',
@@ -104,7 +104,7 @@ const getBlocks = async (blockId: string) => {
   return results
 }
 
-const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
+const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): BlockObjects => {
   if (!blocksWithChildren) {
     return []
   }
@@ -113,6 +113,7 @@ const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
       const articleBlock = {
         id: block.id,
         type: block.type as BlockType,
+        isChild,
       }
       switch (articleBlock.type) {
         case 'heading_1':
@@ -126,7 +127,7 @@ const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
         case 'paragraph':
           return {
             ...articleBlock,
-            text: block.paragraph.text.map((text: TODO) => {
+            texts: block.paragraph.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
                 annotations: { ...text.annotations },
@@ -158,7 +159,9 @@ const toViewModelArticle = (blocksWithChildren: any): BlockObjects => {
             text: block[block.type]?.text.map((text: TODO) => text.plain_text).join(''),
             listType: block.type === 'bulleted_list_item' ? 'bulleted' : 'numbered',
             hasChildren: block.has_children,
-            children: block.has_children ? toViewModelArticle(block[block.type]?.children) : [],
+            childrenBlocks: block.has_children
+              ? toViewModelArticle(block[block.type]?.children, true)
+              : [],
           } as List
         case 'image':
           return {
