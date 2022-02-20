@@ -111,7 +111,7 @@ const renderPostBlock = (block: BlockObject) => {
         <div className='mb-4' key={todo.id}>
           <TodoBlock
             id={todo.id}
-            text={todo.text}
+            texts={todo.texts}
             isChild={todo.isChild}
             isChecked={todo.isChecked}
             type={todo.type}

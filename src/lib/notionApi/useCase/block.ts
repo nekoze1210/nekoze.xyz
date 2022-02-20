@@ -145,7 +145,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
           return {
             ...articleBlock,
             isChecked: block.to_do.checked,
-            text: block.to_do.text[0]?.plain_text || '',
+            texts: block.to_do.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: { ...text.annotations },
+                link: text.href,
+              } as Text
+            }),
           } as ToDo
         case 'quote':
           return {

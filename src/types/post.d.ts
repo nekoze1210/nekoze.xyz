@@ -77,7 +77,7 @@ export type Quote = {
 } & BlockObject
 
 export type ToDo = {
-  text: string | '' // TODO: type alias "Text" に変換できるようにする
+  texts: Text[] | []
   isChecked: boolean
 } & BlockObject
 
