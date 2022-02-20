@@ -8,7 +8,7 @@ const Layout = ({ children }: Props) => {
       <div className={'container mx-auto my-3 p-3'}>
         <Header />
       </div>
-      <div className={'min-h-screen'}>{children}</div>
+      <div className={'container min-h-screen p-3'}>{children}</div>
       <div className={'container mx-auto my-3'}>
         <Footer />
       </div>
