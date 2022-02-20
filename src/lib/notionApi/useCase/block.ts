@@ -173,7 +173,13 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
           return {
             ...articleBlock,
             url: block.image.file.url,
-            caption: block.image.caption.map((caption: TODO) => caption.plain_text).join(''),
+            caption: block.image.caption.map((caption: TODO) => {
+              return {
+                content: caption.plain_text,
+                annotations: { ...caption.annotations },
+                link: caption.href,
+              } as Text
+            }),
           } as Image
         default:
           console.warn(`⚠️ unsupported block type: ${block.type}`)

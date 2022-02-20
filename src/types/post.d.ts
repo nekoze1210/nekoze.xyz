@@ -88,7 +88,7 @@ export type Code = {
 
 export type Image = {
   url: string
-  caption: string | '' // TODO: type alias "Text" に変換できるようにする
+  caption: Text[] | []
 } & BlockObject
 
 export type List = {

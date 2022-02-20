@@ -9,7 +9,7 @@ export const ImageBlock: VFC<PostImage> = ({ url, id, caption }) => {
         <Image
           id={id}
           src={url}
-          alt={caption}
+          alt={caption.map((text) => text.content).join('') || undefined}
           width='100%'
           height='100%'
           layout='responsive'
