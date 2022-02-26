@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
 import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
-import { sleep } from '@/lib/sleep'
+import { NotionBlockObject, notNull } from '@/lib/notionApi/types'
 import {
   Post,
   BlockObjects,
@@ -51,24 +51,7 @@ export const getPublicPageContentsBySlug = async (slug: string) => {
     throw new Error(`id: ${pageId} is not a page object.`)
   }
   // get blocks
-  const blocks = await getBlocks(page.id)
-  // get recursive content blocks
-  const childrenBlocks = await Promise.all(
-    blocks
-      .filter((block) => block.has_children)
-      .map(async (block) => {
-        return {
-          id: block.id,
-          children: await getBlocks(block.id),
-        }
-      }),
-  )
-  const blocksWithChildren = blocks.map((block) => {
-    if (block.has_children) {
-      block[block.type].children = childrenBlocks.find((x) => x.id === block.id)!.children!
-    }
-    return block
-  })
+  const blocksWithChildren = await getChildrenBlocks(page.id)
   const articleBlocks: BlockObjects = toViewModelArticle(blocksWithChildren)
   const article: Post = {
     id: page.id,
@@ -85,46 +68,72 @@ export const getPublicPageContentsBySlug = async (slug: string) => {
   return article
 }
 
-const getBlocks = async (blockId: string) => {
-  let results: TODO[] = []
-  let hasMore = true
-  let cursor: string | undefined = undefined
-
-  while (hasMore) {
-    const response: ListBlockChildrenResponse = await notion.blocks.children.list({
+const getChildrenBlocks = async (blockId: string, depth = 0) => {
+  let blocks: NotionBlockObject[] = []
+  let cursor = null
+  do {
+    const res: ListBlockChildrenResponse = await notion.blocks.children.list({
       block_id: blockId,
       page_size: 50,
-      start_cursor: cursor,
+      start_cursor: cursor || undefined,
     })
-    results = results.concat(response.results)
-    hasMore = response.has_more
-    cursor = response.next_cursor || undefined
-    await sleep(300)
-  }
-  return results
+    for (const block of res.results) {
+      if ('type' in block) {
+        const children = await getChildrenBlocks(block.id, depth + 1)
+        blocks.push({ ...block, depth, children })
+      }
+    }
+    cursor = res.has_more ? res.next_cursor : null
+  } while (cursor !== null)
+  return blocks
 }
 
-const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): BlockObjects => {
+const toViewModelArticle = (
+  blocksWithChildren: NotionBlockObject[],
+  isChild: boolean = false,
+): BlockObjects => {
   if (!blocksWithChildren) {
     return []
   }
   return blocksWithChildren
-    .map((block: any) => {
+    .map((block: NotionBlockObject) => {
       const articleBlock = {
         id: block.id,
         type: block.type as BlockType,
         isChild,
       }
-      switch (articleBlock.type) {
+      switch (block.type) {
         case 'heading_1':
+          return {
+            ...articleBlock,
+            texts: block.heading_1.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: text.annotations,
+                link: text.href,
+              } as Text
+            }),
+            heading_type: block.type,
+          } as Heading
         case 'heading_2':
+          return {
+            ...articleBlock,
+            texts: block.heading_2.text.map((text: TODO) => {
+              return {
+                content: text.plain_text,
+                annotations: text.annotations,
+                link: text.href,
+              } as Text
+            }),
+            heading_type: block.type,
+          } as Heading
         case 'heading_3':
           return {
             ...articleBlock,
-            texts: block[block.type].text.map((text: TODO) => {
+            texts: block.heading_3.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
-                annotations: { ...text.annotations },
+                annotations: text.annotations,
                 link: text.href,
               } as Text
             }),
@@ -136,7 +145,7 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
             texts: block.paragraph.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
-                annotations: { ...text.annotations },
+                annotations: text.annotations,
                 link: text.href,
               } as Text
             }),
@@ -148,7 +157,7 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
             texts: block.to_do.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
-                annotations: { ...text.annotations },
+                annotations: text.annotations,
                 link: text.href,
               } as Text
             }),
@@ -159,7 +168,7 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
             texts: block.quote.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
-                annotations: { ...text.annotations },
+                annotations: text.annotations,
                 link: text.href,
               } as Text
             }),
@@ -171,42 +180,57 @@ const toViewModelArticle = (blocksWithChildren: any, isChild: boolean = false): 
             language: block.code.language,
           } as Code
         case 'bulleted_list_item':
-        case 'numbered_list_item':
           return {
             ...articleBlock,
-            texts: block[block.type]?.text.map((text: TODO) => {
+            texts: block.bulleted_list_item.text.map((text: TODO) => {
               return {
                 content: text.plain_text,
-                annotations: { ...text.annotations },
+                annotations: text.annotations,
                 link: text.href,
               } as Text
             }),
-            listType: block.type === 'bulleted_list_item' ? 'bulleted' : 'numbered',
+            listType: 'bulleted',
             hasChildren: block.has_children,
-            childrenBlocks: block.has_children
-              ? toViewModelArticle(block[block.type]?.children, true)
-              : [],
+            childrenBlocks:
+              block.has_children && block.children?.length
+                ? toViewModelArticle(block.children, true)
+                : [],
           } as List
-        case 'image':
+        case 'numbered_list_item':
           return {
             ...articleBlock,
-            url: block.image.file.url,
-            caption: block.image.caption.map((caption: TODO) => {
+            texts: block.numbered_list_item.text.map((text: TODO) => {
               return {
-                content: caption.plain_text,
-                annotations: { ...caption.annotations },
-                link: caption.href,
+                content: text.plain_text,
+                annotations: text.annotations,
+                link: text.href,
               } as Text
             }),
-          } as Image
+            listType: 'numbered',
+            hasChildren: block.has_children,
+            childrenBlocks:
+              block.has_children && block.children?.length
+                ? toViewModelArticle(block.children, true)
+                : [],
+          } as List
+        case 'image':
+          if (block.image.type === 'file') {
+            return {
+              ...articleBlock,
+              url: block.image.file.url,
+              caption: block.image.caption.map((caption: TODO) => {
+                return {
+                  content: caption.plain_text,
+                  annotations: caption.annotations,
+                  link: caption.href,
+                } as Text
+              }),
+            } as Image
+          }
         default:
           console.warn(`⚠️ unsupported block type: ${block.type}`)
           return null
       }
     })
     .filter(notNull)
-}
-
-const notNull = <T>(item: T | null): item is T => {
-  return item !== null
 }
