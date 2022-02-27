@@ -18,7 +18,7 @@
     "chromatic": "npx chromatic --project-token=CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
-    "@commitlint/cli": "^16.1.0",
+    "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
     "@notionhq/client": "^0.4.13",
     "dayjs": "^1.10.7",
