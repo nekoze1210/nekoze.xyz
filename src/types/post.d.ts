@@ -104,7 +104,7 @@ export type Post = {
   slug: string
   title: string
   tags: Tag[]
-  date: Date
+  date: string | Date
   isPublished: boolean
   ogImageUrl: string
   thumbnailImageUrl: string
