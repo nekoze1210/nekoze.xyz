@@ -144,11 +144,11 @@ export default Post
 export const getStaticProps = async (context: { params: { slug: string } }) => {
   const { slug } = context.params
 
-  const article = await getPublicPageContentsBySlug(slug)
+  const post = await getPublicPageContentsBySlug(slug)
 
   return {
     props: {
-      post: article,
+      post,
     },
     revalidate: 600,
   }
