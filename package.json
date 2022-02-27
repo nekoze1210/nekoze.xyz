@@ -51,7 +51,7 @@
     "chromatic": "^6.4.3",
     "commitlint-config-gitmoji": "^2.2.5",
     "css-loader": "^6.6.0",
-    "eslint": "8.8.0",
+    "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-storybook": "^0.5.6",
