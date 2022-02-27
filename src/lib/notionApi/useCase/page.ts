@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { NotionPageObject } from '@/lib/notionApi/types'
+import { NotionDatabaseObject } from '@/lib/notionApi/types'
 import { MatchType } from '@/lib/util/types'
 
 const notion = new Client({
@@ -29,7 +29,7 @@ export const listPublicPages = async () => {
     ],
   })
 
-  return pages.map((page: NotionPageObject) => {
+  return pages.map((page: NotionDatabaseObject) => {
     const props = createPagePropertyMap(page)
     return {
       id: page.id,
@@ -57,7 +57,7 @@ export const listPublicPagesByTag = async (tag: string) => {
           },
         },
         {
-          property: 'Tag',
+          property: 'Tags',
           multi_select: {
             contains: tag,
           },
@@ -71,7 +71,7 @@ export const listPublicPagesByTag = async (tag: string) => {
       },
     ],
   })
-  return pages.map((page: NotionPageObject) => {
+  return pages.map((page: NotionDatabaseObject) => {
     const props = createPagePropertyMap(page)
     return {
       id: page.id,
@@ -81,20 +81,20 @@ export const listPublicPagesByTag = async (tag: string) => {
       ogImageUrl: props.get('_oVp', 'rich_text')?.rich_text[0]?.plain_text || '',
       thumbnailImageUrl: props.get('3CjCF', 'rich_text')?.rich_text[0]?.plain_text || '',
       tags: props.get('_%3A%3Ey', 'multi_select')?.multi_select.map((tag) => tag.name),
-      date: props.get('L%3CK%5E', 'created_time')?.created_time,
+      date: props.get('L%3CK%5E', 'created_time')!.created_time,
       isPublished: !page.archived,
     }
   })
 }
 
-const getPages = async (params: QueryDatabaseParameters): Promise<NotionPageObject[]> => {
+const getPages = async (params: QueryDatabaseParameters): Promise<NotionDatabaseObject[]> => {
   const res = await notion.databases.query(params)
   return res.results.map((result) => {
-    return result as NotionPageObject
+    return result as NotionDatabaseObject
   })
 }
 
-export function createPagePropertyMap(page: NotionPageObject) {
+export function createPagePropertyMap(page: NotionDatabaseObject) {
   const properties = Object.fromEntries(
     Object.values(page.properties).map((prop) => [prop.id, prop]),
   )

@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
 import { ElementType, MatchType } from '@/lib/util/types'
 
-export type NotionPageObject = MatchType<
+export type NotionDatabaseObject = MatchType<
   ElementType<Awaited<ReturnType<Client['databases']['query']>>['results']>,
   {
     properties: unknown
