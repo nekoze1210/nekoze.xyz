@@ -20,7 +20,7 @@ const databaseId = process.env.NOTION_DATABASE_ID
 
 export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> => {
   const databases = await queryDatabase({
-    database_id: databaseId as string,
+    database_id: databaseId,
     filter: {
       and: [
         {

@@ -47,7 +47,7 @@ export const listPublicPages = async () => {
 
 export const listPublicPagesByTag = async (tag: string) => {
   const pages = await getPages({
-    database_id: databaseId as string,
+    database_id: databaseId,
     filter: {
       and: [
         {
