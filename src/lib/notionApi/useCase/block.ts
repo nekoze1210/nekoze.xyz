@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { getChildrenBlocks, queryDatabase } from '@/lib/notionApi/endpoint'
 import { NotionBlockObject, notNull } from '@/lib/notionApi/types'
 import { createPagePropertyMap } from '@/lib/notionApi/useCase/page'
