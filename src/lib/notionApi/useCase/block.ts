@@ -31,7 +31,7 @@ export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> =
         },
         {
           property: 'Slug',
-          text: {
+          rich_text: {
             equals: slug,
           },
         },
@@ -83,7 +83,7 @@ const toViewModelArticle = (
         case 'heading_1':
           return {
             ...articleBlock,
-            texts: block.heading_1.text.map((text) => {
+            texts: block.heading_1.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -95,7 +95,7 @@ const toViewModelArticle = (
         case 'heading_2':
           return {
             ...articleBlock,
-            texts: block.heading_2.text.map((text) => {
+            texts: block.heading_2.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -107,7 +107,7 @@ const toViewModelArticle = (
         case 'heading_3':
           return {
             ...articleBlock,
-            texts: block.heading_3.text.map((text) => {
+            texts: block.heading_3.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -119,7 +119,7 @@ const toViewModelArticle = (
         case 'paragraph':
           return {
             ...articleBlock,
-            texts: block.paragraph.text.map((text) => {
+            texts: block.paragraph.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -131,7 +131,7 @@ const toViewModelArticle = (
           return {
             ...articleBlock,
             isChecked: block.to_do.checked,
-            texts: block.to_do.text.map((text) => {
+            texts: block.to_do.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -142,7 +142,7 @@ const toViewModelArticle = (
         case 'quote':
           return {
             ...articleBlock,
-            texts: block.quote.text.map((text) => {
+            texts: block.quote.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -153,13 +153,13 @@ const toViewModelArticle = (
         case 'code':
           return {
             ...articleBlock,
-            text: block.code.text[0].plain_text || '',
+            text: block.code.rich_text[0].plain_text || '',
             language: block.code.language,
           } as Code
         case 'bulleted_list_item':
           return {
             ...articleBlock,
-            texts: block.bulleted_list_item.text.map((text) => {
+            texts: block.bulleted_list_item.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
@@ -176,7 +176,7 @@ const toViewModelArticle = (
         case 'numbered_list_item':
           return {
             ...articleBlock,
-            texts: block.numbered_list_item.text.map((text) => {
+            texts: block.numbered_list_item.rich_text.map((text) => {
               return {
                 content: text.plain_text,
                 annotations: text.annotations,
