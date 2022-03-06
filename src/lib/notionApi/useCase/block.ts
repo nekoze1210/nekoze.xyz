@@ -250,11 +250,11 @@ const generateInternalImageUrlFromExternal = async (
       },
       responseType: 'stream',
     })
-
-    const imagePath = internalPostImagesPath + '/' + blockId + path.extname(imageUrl.split('?')[0])
-    const imageExists = fs.existsSync('/public' + imagePath)
+    const fileName = blockId + path.extname(imageUrl.split('?')[0])
+    const imagePath = internalPostImagesPath + '/' + fileName
+    const imageExists = fs.existsSync('./public' + imagePath)
     if (!imageExists) {
-      response.data.pipe(fs.createWriteStream('/public' + imagePath))
+      response.data.pipe(fs.createWriteStream('./public' + imagePath))
     }
     return imagePath
   } catch (e) {
