@@ -254,8 +254,12 @@ const generateInternalImageUrlFromExternal = async (
     const imagePath = internalPostImagesPath + '/' + fileName
     const imageExists = fs.existsSync('./public' + imagePath)
 
+    const dirExists = fs.existsSync('./public' + internalPostImagesPath)
+    if (!dirExists) {
+      fs.mkdirSync('./public' + internalPostImagesPath, { recursive: true })
+    }
     if (!imageExists) {
-      fs.writeFileSync('./public/' + imagePath, response.data)
+      fs.writeFileSync('./public' + imagePath, response.data)
     }
     return imagePath
   } catch (e) {
