@@ -1,4 +1,6 @@
-import dayjs from 'dayjs'
+import * as fs from 'fs'
+import path from 'path'
+import axios from 'axios'
 import { getChildrenBlocks, queryDatabase } from '@/lib/notionApi/endpoint'
 import { NotionBlockObject, notNull } from '@/lib/notionApi/types'
 import { createPagePropertyMap } from '@/lib/notionApi/useCase/page'
@@ -17,6 +19,7 @@ import {
 } from '@/types/post'
 
 const databaseId = process.env.NOTION_DATABASE_ID
+const internalPostImagesPath = '/post-images'
 
 export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> => {
   const databases = await queryDatabase({
@@ -45,7 +48,7 @@ export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> =
   // get blocks
   const blocksWithChildren = await getChildrenBlocks(database.id)
   const props = createPagePropertyMap(database)
-  const articleBlocks: BlockObjects = toViewModelArticle(blocksWithChildren)
+  const articleBlocks: BlockObjects = await toViewModelArticle(blocksWithChildren)
   return {
     id: database.id,
     title: props.get('title', 'title')?.title[0]?.plain_text || '',
@@ -65,149 +68,203 @@ export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> =
   }
 }
 
-const toViewModelArticle = (
+const toViewModelArticle = async (
   blocksWithChildren: NotionBlockObject[],
   isChild: boolean = false,
-): BlockObjects => {
+): Promise<BlockObjects> => {
   if (!blocksWithChildren) {
     return []
   }
-  return blocksWithChildren
-    .map((block: NotionBlockObject) => {
-      const articleBlock = {
-        id: block.id,
-        type: block.type as BlockType,
-        isChild,
-      }
-      switch (block.type) {
-        case 'heading_1':
-          return {
-            ...articleBlock,
-            texts: block.heading_1.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-            heading_type: block.type,
-          } as Heading
-        case 'heading_2':
-          return {
-            ...articleBlock,
-            texts: block.heading_2.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-            heading_type: block.type,
-          } as Heading
-        case 'heading_3':
-          return {
-            ...articleBlock,
-            texts: block.heading_3.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-            heading_type: block.type,
-          } as Heading
-        case 'paragraph':
-          return {
-            ...articleBlock,
-            texts: block.paragraph.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-          } as Paragraph
-        case 'to_do':
-          return {
-            ...articleBlock,
-            isChecked: block.to_do.checked,
-            texts: block.to_do.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-          } as ToDo
-        case 'quote':
-          return {
-            ...articleBlock,
-            texts: block.quote.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-          } as Quote
-        case 'code':
-          return {
-            ...articleBlock,
-            text: block.code.rich_text[0].plain_text || '',
-            language: block.code.language,
-          } as Code
-        case 'bulleted_list_item':
-          return {
-            ...articleBlock,
-            texts: block.bulleted_list_item.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-            listType: 'bulleted',
-            hasChildren: block.has_children,
-            childrenBlocks:
-              block.has_children && block.children?.length
-                ? toViewModelArticle(block.children, true)
-                : [],
-          } as List
-        case 'numbered_list_item':
-          return {
-            ...articleBlock,
-            texts: block.numbered_list_item.rich_text.map((text) => {
-              return {
-                content: text.plain_text,
-                annotations: text.annotations,
-                link: text.href,
-              } as Text
-            }),
-            listType: 'numbered',
-            hasChildren: block.has_children,
-            childrenBlocks:
-              block.has_children && block.children?.length
-                ? toViewModelArticle(block.children, true)
-                : [],
-          } as List
-        case 'image':
-          if (block.image.type === 'file') {
+  const articleBlocks = []
+  for (const block of blocksWithChildren) {
+    const articleBlock = {
+      id: block.id,
+      type: block.type as BlockType,
+      isChild,
+    }
+    switch (block.type) {
+      case 'heading_1':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.heading_1.rich_text.map((text) => {
             return {
-              ...articleBlock,
-              url: block.image.file.url,
-              caption: block.image.caption.map((caption) => {
-                return {
-                  content: caption.plain_text,
-                  annotations: caption.annotations,
-                  link: caption.href,
-                } as Text
-              }),
-            } as Image
-          }
-        default:
-          console.warn(`⚠️ unsupported block type: ${block.type}`)
-          return null
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+          heading_type: block.type,
+        } as Heading)
+        continue
+      case 'heading_2':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.heading_2.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+          heading_type: block.type,
+        } as Heading)
+        continue
+      case 'heading_3':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.heading_3.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+          heading_type: block.type,
+        } as Heading)
+        continue
+      case 'paragraph':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.paragraph.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+        } as Paragraph)
+        continue
+      case 'to_do':
+        articleBlocks.push({
+          ...articleBlock,
+          isChecked: block.to_do.checked,
+          texts: block.to_do.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+        } as ToDo)
+        continue
+      case 'quote':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.quote.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+        } as Quote)
+        continue
+      case 'code':
+        articleBlocks.push({
+          ...articleBlock,
+          text: block.code.rich_text[0].plain_text || '',
+          language: block.code.language,
+        } as Code)
+        continue
+      case 'bulleted_list_item':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.bulleted_list_item.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+          listType: 'bulleted',
+          hasChildren: block.has_children,
+          childrenBlocks:
+            block.has_children && block.children?.length
+              ? await toViewModelArticle(block.children, true)
+              : [],
+        } as List)
+        continue
+      case 'numbered_list_item':
+        articleBlocks.push({
+          ...articleBlock,
+          texts: block.numbered_list_item.rich_text.map((text) => {
+            return {
+              content: text.plain_text,
+              annotations: text.annotations,
+              link: text.href,
+            } as Text
+          }),
+          listType: 'numbered',
+          hasChildren: block.has_children,
+          childrenBlocks:
+            block.has_children && block.children?.length
+              ? await toViewModelArticle(block.children, true)
+              : [],
+        } as List)
+        continue
+      case 'image': {
+        if (block.image.type === 'file') {
+          articleBlocks.push({
+            ...articleBlock,
+            url: await generateInternalImageUrlFromExternal(block.id, block.image.file.url),
+            caption: block.image.caption.map((caption) => {
+              return {
+                content: caption.plain_text,
+                annotations: caption.annotations,
+                link: caption.href,
+              } as Text
+            }),
+          } as Image)
+          continue
+        }
+        if (block.image.type === 'external') {
+          articleBlocks.push({
+            ...articleBlock,
+            url: block.image.external.url,
+            caption: block.image.caption.map((caption) => {
+              return {
+                content: caption.plain_text,
+                annotations: caption.annotations,
+                link: caption.href,
+              } as Text
+            }),
+          } as Image)
+        }
       }
+      default:
+        console.warn(`⚠️ unsupported block type: ${block.type}`)
+        continue
+    }
+  }
+  return articleBlocks.filter(notNull)
+}
+
+const generateInternalImageUrlFromExternal = async (
+  blockId: string,
+  imageUrl: string,
+): Promise<string> => {
+  try {
+    const response = await axios.get(imageUrl, {
+      headers: {
+        'Content-Type': 'image/png',
+      },
+      responseType: 'arraybuffer',
     })
-    .filter(notNull)
+    const fileName = blockId + path.extname(imageUrl.split('?')[0])
+    const imagePath = internalPostImagesPath + '/' + fileName
+    const imageExists = fs.existsSync('./public' + imagePath)
+
+    const dirExists = fs.existsSync('./public' + internalPostImagesPath)
+    if (!dirExists) {
+      fs.mkdirSync('./public' + internalPostImagesPath, { recursive: true })
+    }
+    if (!imageExists) {
+      fs.writeFileSync('./public' + imagePath, response.data)
+    }
+    return imagePath
+  } catch (e) {
+    console.error(`failed to download image. imageUrl: ${imageUrl}`)
+    console.error(e)
+    return imageUrl
+  }
 }
