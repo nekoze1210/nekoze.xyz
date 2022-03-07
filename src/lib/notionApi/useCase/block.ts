@@ -248,13 +248,14 @@ const generateInternalImageUrlFromExternal = async (
       headers: {
         'Content-Type': 'image/png',
       },
-      responseType: 'stream',
+      responseType: 'arraybuffer',
     })
     const fileName = blockId + path.extname(imageUrl.split('?')[0])
     const imagePath = internalPostImagesPath + '/' + fileName
     const imageExists = fs.existsSync('./public' + imagePath)
+
     if (!imageExists) {
-      response.data.pipe(fs.createWriteStream('./public' + imagePath))
+      fs.writeFileSync('./public/' + imagePath, response.data)
     }
     return imagePath
   } catch (e) {
