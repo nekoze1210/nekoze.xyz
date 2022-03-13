@@ -23,5 +23,6 @@
         ]
       }
     ]
-  }
+  },
+  "ignorePatterns": ["next-sitemap.js"]
 }
