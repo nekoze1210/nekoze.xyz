@@ -1,4 +1,6 @@
+import dayjs from 'dayjs'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import React from 'react'
 import { CodeBlock } from '@/components/postBlocks/Code'
 import { HeadingBlock } from '@/components/postBlocks/Heading'
@@ -17,6 +19,7 @@ import {
   Image as PostImage,
   Quote,
   ToDo,
+  Tag,
 } from '@/types/post'
 
 const renderPostBlock = (block: BlockObject) => {
@@ -129,6 +132,18 @@ const Post: NextPage = ({ post }) => {
 
   return (
     <div className='bg-white rounded-lg border border-aluminium dark:border-abbey dark:bg-black mt-5 p-5 break-all'>
+      <NextSeo
+        openGraph={{
+          title: post.title,
+          type: 'article',
+          url: `${process.env.SITE_URL}/${post.slug}`,
+          article: {
+            authors: ['@nekoze_da'],
+            publishedTime: dayjs(post.publishedAt).format(),
+            tags: post.tags.map((tag: Tag) => tag.name),
+          },
+        }}
+      />
       <h1 className='text-2xl font-bold tracking-tight'>{post.title}</h1>
       <article className='mt-3'>
         {post.blocks.map((block: any) => {
