@@ -39,3 +39,7 @@ yarn-error.log*
 
 # post images
 public/post-images/
+
+# sitemap
+public/sitemap*.xml
+public/robots.txt
