@@ -17,6 +17,9 @@ jobs:
         run: |
           yarn
           yarn build
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
       - name: Vercel Deploy
         uses: amondnet/vercel-action@v20.0.1
         env:
