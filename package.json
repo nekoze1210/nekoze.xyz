@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint --dir src",
     "lint:fix": "next lint --dir src --fix",
@@ -62,6 +63,7 @@
     "husky": "^7.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.5",
+    "next-sitemap": "^2.5.7",
     "postcss": "^8.4.8",
     "postcss-loader": "^6.2.1",
     "postcss-scss": "^4.0.3",
