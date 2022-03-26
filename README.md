@@ -1,8 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nekoze.xyz
+The homepage of [@nekoze1210](https://github.com/nekoze1210)
+
+## [WIP] Portfolio
+You can check out my personal biography and resume.
+- [nekoze.xyz](https://nekoze.xyz)
+
+## Blog
+You can read my posts.
+- [blog.nekoze.xyz](https://blog.nekoze.xyz)
+- [Sitemap](https://blog.nekoze.xyz/sitemap.xml)
 
 ## Getting Started
+1. Install dependencies:
 
-First, run the development server:
+```bash
+npm install
+# or
+yarn
+```
+
+2. Rename .env.example to .env.[local | development | production]:
+
+```bash
+mv .env.example .env.local
+```
+
+3. Enable Notion API and create Integration with your Notion Database: [^1]
+
+- [Create integrations with the Notion API (Notion)](https://www.notion.so/help/create-integrations-with-the-notion-api)
+
+[^1]: My blog uses Notion API as CMS
+ 
+6. Replace example env variables your Notion's Database ID and API Token with example ID and token (e.g. xxxxxxx....)
+
+```dotenv
+...
+NOTION_TOKEN=Your Notion API Token
+NOTION_DATABASE_ID=Your Notion Database ID
+...
+```
+
+6. Run the Next.js development server:
 
 ```bash
 npm run dev
@@ -14,21 +52,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 ## Learn More
+Take a look at the following resources:
 
-To learn more about Next.js, take a look at the following resources:
-
+### Next.js
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+### Notion API
+- [Notion API Reference](https://developers.notion.com/reference/intro) - learn about Notion API
+- [Notion API Changelog (currently this blog supports v1)](https://developers.notion.com/changelog) - a changelog of Notion API
+- [Notion API Client](https://github.com/makenotion/notion-sdk-js) - an official Notion JavaScript SDK
+
 ## Deploy on Vercel
+Use [Vercel CLI](https://vercel.com) to deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Build static pages 
+npm run build
+## or
+yarn build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Deploy on Vercel
+vercel
+```
