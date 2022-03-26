@@ -31,7 +31,7 @@ mv .env.example .env.local
 
 [^1]: My blog uses Notion API as CMS
  
-6. Replace example env variables your Notion's Database ID and API Token with example ID and token (e.g. xxxxxxx....)
+4. Replace example env variables your Notion's Database ID and API Token with example ID and token (e.g. xxxxxxx....)
 
 ```dotenv
 ...
@@ -40,7 +40,7 @@ NOTION_DATABASE_ID=Your Notion Database ID
 ...
 ```
 
-6. Run the Next.js development server:
+5. Run the Next.js development server:
 
 ```bash
 npm run dev
