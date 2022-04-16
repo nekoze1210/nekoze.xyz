@@ -11,12 +11,6 @@ module.exports = {
         abbey: '#424346',
         aluminium: '#A2A5AC',
       },
-      width: {
-        '806px': '806px',
-      },
-      maxWidth: {
-        '806px': '806px',
-      },
     },
   },
   variants: {
