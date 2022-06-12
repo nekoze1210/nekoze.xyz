@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useLocalStorage } from 'react-use'
 import { useTailwindTheme } from '@/hooks/theme/tailwind'
 
+export const ThemeLocalStorageKey = 'nekoze_theme'
+
 const Theme = {
   light: 'light',
   dark: 'dark',
@@ -13,7 +15,7 @@ export type UseTheme = () => {
 }
 
 export const useTheme: UseTheme = () => {
-  const [value, setValue] = useLocalStorage<typeof Theme['light' | 'dark']>('theme')
+  const [value, setValue] = useLocalStorage<typeof Theme['light' | 'dark']>(ThemeLocalStorageKey)
   const { isDark, toggle } = useTailwindTheme()
 
   const toggleDarkMode = (isDark: boolean) => {
@@ -24,7 +26,8 @@ export const useTheme: UseTheme = () => {
   useEffect(() => {
     if (
       value === Theme.dark ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      (!(ThemeLocalStorageKey in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
       toggle(true)
       setValue(Theme.dark)

@@ -2,9 +2,13 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { listPublicPages, listPublicPagesByTag } from '@/lib/notionApi/useCase'
+import { Post } from '@/types/post'
 
-// @ts-ignore
-const Tags: NextPage = ({ posts }) => {
+type TagsProps = {
+  posts: Post[]
+}
+
+const Tags: NextPage<TagsProps> = ({ posts }) => {
   return (
     <div>
       <Head>
