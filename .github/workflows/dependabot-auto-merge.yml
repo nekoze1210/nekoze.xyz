@@ -1,4 +1,4 @@
-name: Dependabot pacth update
+name: Dependabot patch update
 on: pull_request_target
 
 permissions:
