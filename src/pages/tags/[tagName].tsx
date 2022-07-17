@@ -16,7 +16,7 @@ const Tags: NextPage<TagsProps> = ({ posts, tagName }) => {
   return (
     <div>
       <Head>
-        <title>Tag: #{tagName} - nekolog</title>
+        <title>Tag: #{tagName} - nekoLog</title>
       </Head>
       <NextSeo
         openGraph={{

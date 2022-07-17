@@ -19,7 +19,7 @@ export const Header = () => {
           </a>
         </Link>
         <Link href={'/'}>
-          <a className={'flex-1 text-3xl'}>nekolog</a>
+          <a className={'flex-1 text-3xl'}>nekoLog</a>
         </Link>
         <div>
           <DarkModeButton />

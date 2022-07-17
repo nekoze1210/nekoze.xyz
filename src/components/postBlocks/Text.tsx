@@ -7,6 +7,8 @@ export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
     [
       'text',
       'text-gray-900 dark:text-white',
+      'leading-loose',
+      'tracking-wide',
       'whitespace-pre-line',
       bold ? 'font-bold' : '',
       code

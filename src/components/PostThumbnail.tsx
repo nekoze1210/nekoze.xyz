@@ -24,7 +24,7 @@ export const PostThumbnail: VFC<Post> = (post: Post) => {
         <Link href={`/posts/${encodeURIComponent(post.slug)}`} key={post.id}>
           <a
             key={post.id}
-            className='mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white'
+            className='mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white tracking-wide'
           >
             {post.title}
           </a>

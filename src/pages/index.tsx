@@ -13,7 +13,7 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
   return (
     <div>
       <Head>
-        <title>nekolog</title>
+        <title>nekoLog</title>
       </Head>
       <main>
         <ul className='px-3'>
