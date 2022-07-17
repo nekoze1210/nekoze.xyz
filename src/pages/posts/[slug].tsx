@@ -1,3 +1,4 @@
+import { hrefTo } from '@storybook/addon-links'
 import dayjs from 'dayjs'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
@@ -16,7 +17,7 @@ const Post: NextPage<PostProps> = ({ post }) => {
   }
 
   return (
-    <div className='bg-white rounded-lg border border-aluminium dark:border-abbey dark:bg-black mt-5 p-5 break-all'>
+    <div className='p-5 break-all'>
       <NextSeo
         openGraph={{
           title: post.title,
@@ -29,11 +30,16 @@ const Post: NextPage<PostProps> = ({ post }) => {
           },
         }}
       />
-      <h1 className='text-2xl font-bold tracking-tight'>{post.title}</h1>
-      <article className='mt-3'>
-        {post.blocks.map((block: any) => {
-          return renderPostBlock(block)
-        })}
+      <article>
+        <h1 className='text-2xl font-bold tracking-tight'>{post.title}</h1>
+        <time>
+          <span className='text-gray-500'>{dayjs(post.date).format('YYYY-MM-DD')} </span>
+        </time>
+        <div className='pt-12'>
+          {post.blocks.map((block: any) => {
+            return renderPostBlock(block)
+          })}
+        </div>
       </article>
     </div>
   )

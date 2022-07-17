@@ -11,6 +11,9 @@ module.exports = {
         abbey: '#424346',
         aluminium: '#A2A5AC',
       },
+      fontFamily: {
+        notoSansJP: ['Noto Sans JP'],
+      },
     },
   },
   variants: {
