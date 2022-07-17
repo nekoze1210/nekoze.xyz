@@ -7,7 +7,7 @@ export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
     <span
       className={
         [
-          'text-gray-900 dark:text-gray-300',
+          'text-gray-900 dark:text-white',
           'whitespace-pre-line',
           bold ? 'font-bold' : '',
           code

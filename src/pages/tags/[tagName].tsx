@@ -1,27 +1,34 @@
+import dayjs from 'dayjs'
 import { NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import Head from 'next/head'
-import Link from 'next/link'
+import React from 'react'
+import { PostThumbnail } from '@/components/PostThumbnail'
 import { listPublicPages, listPublicPagesByTag } from '@/lib/notionApi/useCase'
-import { Post } from '@/types/post'
+import { Post, Tag } from '@/types/post'
 
 type TagsProps = {
   posts: Post[]
+  tagName: string
 }
 
-const Tags: NextPage<TagsProps> = ({ posts }) => {
+const Tags: NextPage<TagsProps> = ({ posts, tagName }) => {
   return (
     <div>
       <Head>
-        <title>Tag page</title>
+        <title>Tag: #{tagName} - nekolog</title>
       </Head>
+      <NextSeo
+        openGraph={{
+          title: `#${tagName}`,
+          url: `${process.env.SITE_URL}/tags/${tagName}`,
+        }}
+      />
       <main>
-        <ul>
-          {posts.map((post: any) => {
-            return (
-              <Link href={`/posts/${encodeURIComponent(post.slug)}`} key={post.id}>
-                <li key={post.id}>{post.title}</li>
-              </Link>
-            )
+        <h1 className='text-2xl font-bold tracking-tight'>#{tagName}</h1>
+        <ul className='px-3'>
+          {posts.map((post) => {
+            return <PostThumbnail {...post} key={post.id} />
           })}
         </ul>
       </main>
@@ -38,6 +45,7 @@ export const getStaticProps = async (context: { params: { tagName: string } }) =
   return {
     props: {
       posts,
+      tagName,
     },
   }
 }
