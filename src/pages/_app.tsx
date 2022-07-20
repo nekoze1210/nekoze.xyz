@@ -20,12 +20,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Layout>
       <DefaultSeo
         openGraph={{
-          title: '@nekoze_da Blog',
+          title: 'nekoLog',
           description: '思ったことや学んだことを書きます',
           type: 'website',
           locale: 'ja_JP',
           url: process.env.SITE_URL || 'https://blog.nekoze.xyz',
-          site_name: '@nekoze_da Blog',
+          site_name: 'nekolog',
         }}
         twitter={{
           cardType: 'summary_large_image',

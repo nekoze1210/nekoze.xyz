@@ -1,27 +1,25 @@
-import { VFC } from 'react'
+import Prism from 'prismjs'
+import { useEffect, VFC } from 'react'
 import { Code } from '@/types/post'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/themes/prism-tomorrow.css'
 
 export const CodeBlock: VFC<Code> = ({ id, text, language }) => {
+  useEffect(() => {
+    Prism.highlightAll()
+  })
   return (
-    <pre id={id}>
-      <code>{text}</code>
-      <style lang={language}>{`
-        code {
-          vertical-align: middle;
-          white-space: pre;
-          word-break: break-all;
-          max-width: 100%;
-          display: block;
-          font-size: 0.8rem;
-          line-height: 1.4;
-          padding: 1.25rem 1.5rem;
-          margin: 0.85rem 0;
-          background-color: #282c34;
-          color: #ccc;
-          border-radius: 6px;
-          overflow: auto;
-        }
-      `}</style>
+    <pre id={id} className='rounded-md'>
+      <code
+        className={`language-${language}`}
+        dangerouslySetInnerHTML={{
+          __html: Prism.highlight(
+            text,
+            Prism.languages[language.toLowerCase()] || Prism.languages.javascript,
+            '',
+          ),
+        }}
+      />
     </pre>
   )
 }
