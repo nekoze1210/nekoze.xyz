@@ -29,7 +29,7 @@
     "budoux": "^0.1.1",
     "dayjs": "^1.11.3",
     "next": "12.1.0",
-    "next-seo": "^5.1.0",
+    "next-seo": "^5.9.0",
     "postcss-import": "^14.1.0",
     "prismjs": "^1.28.0",
     "react": "17.0.2",
