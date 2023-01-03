@@ -1,21 +1,10 @@
 import '@/styles/globals.scss'
 import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
-import { useEffect } from 'react'
-import { useBudoux } from '@/hooks/useBudoux'
 import Layout from '@/pages/layout'
 import 'react-medium-image-zoom/dist/styles.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { applyElement } = useBudoux()
-
-  useEffect(() => {
-    const elems = document.querySelectorAll<HTMLElement>('.text')
-    elems.forEach((elem: HTMLElement) => {
-      applyElement(elem)
-    })
-  })
-
   return (
     <Layout>
       <DefaultSeo
