@@ -59,7 +59,7 @@
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.4",
     "chromatic": "^6.5.1",
-    "commitlint-config-gitmoji": "^2.2.5",
+    "commitlint-config-gitmoji": "^2.2.8",
     "css-loader": "^6.7.1",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
