@@ -26,7 +26,7 @@ export const PostThumbnail: VFC<Post> = (post: Post) => {
         >
           {post.title}
         </Link>
-        <p className='text-md text-gray-500 dark:text-gray-300'>
+        <div className='text-md text-gray-500 dark:text-gray-300'>
           <p>
             <time>{dayjs(post.date).format('YYYY-MM-DD')} </time>
           </p>
@@ -41,7 +41,7 @@ export const PostThumbnail: VFC<Post> = (post: Post) => {
               </Link>
             )
           })}
-        </p>
+        </div>
       </div>
     </li>
   )
