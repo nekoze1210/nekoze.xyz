@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { VFC } from 'react'
 import { Text } from '@/types/post'
 
@@ -24,9 +25,9 @@ export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
   return (
     <span className={className}>
       {link ? (
-        <a href={link} target='_blank' rel='noreferrer'>
+        <Link href={link} target='_blank' rel='noreferrer'>
           {content}
-        </a>
+        </Link>
       ) : (
         content
       )}

@@ -10,16 +10,14 @@ export const Header = () => {
         }
       >
         <Link href={'/'}>
-          <a>
-            <img
-              src='https://avatars.githubusercontent.com/u/14988862?v=4'
-              className={'rounded-full h-10 w-10'}
-              alt={'logo'}
-            />
-          </a>
+          <img
+            src='https://avatars.githubusercontent.com/u/14988862?v=4'
+            className={'rounded-full h-10 w-10'}
+            alt={'logo'}
+          />
         </Link>
-        <Link href={'/'}>
-          <a className={'flex-1 text-3xl'}>nekoLog</a>
+        <Link href={'/'} className={'flex-1 text-3xl'}>
+          nekoLog
         </Link>
         <div>
           <DarkModeButton />
