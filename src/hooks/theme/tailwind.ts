@@ -7,7 +7,7 @@ export type UseTailwindTheme = (isDark?: boolean) => {
 
 export const useTailwindTheme: UseTailwindTheme = (isInitiallyDarkMode = false) => {
   const [isDark, toggleTheme] = useState<boolean>(isInitiallyDarkMode)
-  const toggle = useCallback((isDark?) => {
+  const toggle = useCallback((isDark?: boolean) => {
     if (typeof isDark === 'undefined') {
       toggleTheme((state: boolean) => !state)
       return
