@@ -9,7 +9,7 @@ export const Header = () => {
           'text-black dark:text-white flex flex-wrap items-center justify-between space-x-3'
         }
       >
-        <Link href={'/'}>
+        <Link href={'/'} legacyBehavior>
           <img
             src='https://avatars.githubusercontent.com/u/14988862?v=4'
             className={'rounded-full h-10 w-10'}

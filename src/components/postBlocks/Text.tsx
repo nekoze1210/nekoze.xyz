@@ -25,7 +25,7 @@ export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
   return (
     <span className={className}>
       {link ? (
-        <Link href={link} target='_blank' rel='noreferrer'>
+        <Link href={link} target='_blank' rel='noreferrer' legacyBehavior>
           {content}
         </Link>
       ) : (
