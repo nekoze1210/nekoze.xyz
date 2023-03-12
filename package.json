@@ -92,8 +92,15 @@
     "webpack": "^5.75.0"
   },
   "resolutions": {
-    "loader-utils": "^3.0.0",
+    "decode-uri-component": "^0.2.1",
+    "glob-parent": "^5.1.2",
+    "http-cache-semantics": "^4.1.1",
     "json5": "^2.2.2",
-    "terser": "^5.14.2"
+    "loader-utils": "^3.0.0",
+    "minimatch": "^3.0.5",
+    "qs": "^6.7.3",
+    "terser": "^5.14.2",
+    "trim": "^0.0.3",
+    "trim-newlines": "^3.0.1"
   }
 }
