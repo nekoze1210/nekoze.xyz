@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client'
+
 import { ElementType, MatchType } from '@/types'
 
 export type NotionDatabaseObject = MatchType<

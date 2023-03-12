@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import DarkModeButton from '@/components/DarkModeButton'
 
 export const Header = () => {

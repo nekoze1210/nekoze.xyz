@@ -1,13 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier",
-    "plugin:storybook/recommended"
-  ],
-  "plugins": [
-    "import",
-    "unused-imports"
-  ],
+  "extends": ["next/core-web-vitals", "prettier", "plugin:storybook/recommended"],
+  "plugins": ["import", "unused-imports"],
   "rules": {
     "import/order": [
       "error",
@@ -21,10 +14,7 @@
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [
-          "./",
-          "../"
-        ]
+        "patterns": ["./", "../"]
       }
     ],
     "@typescript-eslint/no-unused-vars": "off",

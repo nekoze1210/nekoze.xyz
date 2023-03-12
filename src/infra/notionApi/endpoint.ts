@@ -3,6 +3,7 @@ import {
   ListBlockChildrenResponse,
   QueryDatabaseParameters,
 } from '@notionhq/client/build/src/api-endpoints'
+
 import { NotionBlockObject, NotionDatabaseObject } from '@/infra/notionApi/types'
 
 const notion = new Client({

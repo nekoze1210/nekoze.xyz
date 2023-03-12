@@ -1,4 +1,5 @@
 import { VFC } from 'react'
+
 import { TextBlock } from '@/components/postBlocks/Text'
 import { Quote } from '@/types/post'
 

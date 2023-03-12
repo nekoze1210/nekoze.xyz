@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client'
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
+
 import { NotionDatabaseObject } from '@/infra/notionApi/types'
 import { MatchType } from '@/types'
 

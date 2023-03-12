@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "gitmoji"
-  ]
+  "extends": ["gitmoji"]
 }

@@ -1,6 +1,7 @@
 import '@/styles/globals.scss'
-import { DefaultSeo } from 'next-seo'
 import type { AppProps } from 'next/app'
+import { DefaultSeo } from 'next-seo'
+
 import Layout from '@/pages/layout'
 import 'react-medium-image-zoom/dist/styles.css'
 

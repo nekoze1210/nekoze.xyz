@@ -1,4 +1,5 @@
 import { VFC } from 'react'
+
 import { useTheme } from '@/hooks/theme'
 
 const DarkModeButton: VFC = () => {

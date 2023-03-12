@@ -2,9 +2,10 @@ import dayjs from 'dayjs'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
+
 import { renderPostBlock } from '@/components/PostBlock'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
-import { Tag, Post, BlockObjects, BlockObject } from '@/types/post'
+import { Tag, Post } from '@/types/post'
 
 type PostProps = {
   post: Post

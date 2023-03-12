@@ -1,9 +1,10 @@
 import type { Config } from '@jest/types'
+
 const nextJest = require('next/jest')
 
 const createNextJestConfig = nextJest({
-    dir: './'
-  })
+  dir: './',
+})
 
 const config: Config.InitialOptions = {
   roots: ['<rootDir>/__tests__'],
@@ -11,7 +12,7 @@ const config: Config.InitialOptions = {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jsdom',

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocalStorage } from 'react-use'
+
 import { useTailwindTheme } from '@/hooks/theme/tailwind'
 
 export const ThemeLocalStorageKey = 'nekoze_theme'
@@ -15,7 +16,7 @@ export type UseTheme = () => {
 }
 
 export const useTheme: UseTheme = () => {
-  const [value, setValue] = useLocalStorage<typeof Theme['light' | 'dark']>(ThemeLocalStorageKey)
+  const [value, setValue] = useLocalStorage<(typeof Theme)['light' | 'dark']>(ThemeLocalStorageKey)
   const { isDark, toggle } = useTailwindTheme()
 
   const toggleDarkMode = (isDark: boolean) => {

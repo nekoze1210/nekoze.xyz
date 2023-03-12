@@ -1,11 +1,11 @@
-import dayjs from 'dayjs'
 import { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 import React from 'react'
+
 import { PostThumbnail } from '@/components/PostThumbnail'
 import { listPublicPages, listPublicPagesByTag } from '@/infra/notionApi/client'
-import { Post, Tag } from '@/types/post'
+import { Post } from '@/types/post'
 
 type TagsProps = {
   posts: Post[]

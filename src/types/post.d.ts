@@ -1,5 +1,3 @@
-import { Block } from '@babel/types'
-
 export type Tag = {
   name: string
 }

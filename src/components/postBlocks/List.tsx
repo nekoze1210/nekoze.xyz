@@ -1,4 +1,5 @@
 import { ReactNode, VFC } from 'react'
+
 import { TextBlock } from '@/components/postBlocks/Text'
 import { List } from '@/types/post'
 

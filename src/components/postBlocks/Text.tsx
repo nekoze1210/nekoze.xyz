@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { VFC } from 'react'
+
 import { Text } from '@/types/post'
 
 export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
