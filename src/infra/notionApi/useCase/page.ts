@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
-import { NotionDatabaseObject } from '@/lib/notionApi/types'
-import { MatchType } from '@/lib/util/types'
+import { NotionDatabaseObject } from '@/infra/notionApi/types'
+import { MatchType } from '@/utils/types'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,

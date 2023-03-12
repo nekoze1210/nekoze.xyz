@@ -63,7 +63,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ### Notion API
 - [Notion API Reference](https://developers.notion.com/reference/intro) - learn about Notion API
-- [Notion API Changelog (currently this blog supports v1)](https://developers.notion.com/changelog) - a changelog of Notion API
+- [Notion API Changelog](https://developers.notion.com/page/changelog) - a changelog of Notion API
 - [Notion API Client](https://github.com/makenotion/notion-sdk-js) - an official Notion JavaScript SDK
 
 ## Deploy on Vercel
