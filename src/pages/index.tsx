@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
 import { PostThumbnail } from '@/components/PostThumbnail'
-import { listPublicPages } from '@/infra/notionApi/useCase'
+import { listPublicPages } from '@/infra/notionApi/client'
 import { Post } from '@/types/post'
 
 type HomeProps = {

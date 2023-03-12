@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import Head from 'next/head'
 import React from 'react'
 import { PostThumbnail } from '@/components/PostThumbnail'
-import { listPublicPages, listPublicPagesByTag } from '@/infra/notionApi/useCase'
+import { listPublicPages, listPublicPagesByTag } from '@/infra/notionApi/client'
 import { Post, Tag } from '@/types/post'
 
 type TagsProps = {
