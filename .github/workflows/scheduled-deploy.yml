@@ -21,7 +21,7 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
       - name: Vercel Deploy
-        uses: amondnet/vercel-action@v20.0.1
+        uses: amondnet/vercel-action@v20.0.2
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: '--prod'
