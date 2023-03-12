@@ -1,5 +1,6 @@
 import Prism from 'prismjs'
 import { useEffect, VFC } from 'react'
+
 import { Code } from '@/types/post'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/themes/prism-tomorrow.css'

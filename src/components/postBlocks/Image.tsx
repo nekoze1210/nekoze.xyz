@@ -1,5 +1,6 @@
 import React, { VFC } from 'react'
 import Zoom from 'react-medium-image-zoom'
+
 import { Image as PostImage } from '@/types/post'
 
 export const ImageBlock: VFC<PostImage> = ({ url, id, caption }) => {

@@ -1,9 +1,11 @@
 import * as fs from 'fs'
 import path from 'path'
+
 import axios from 'axios'
-import { getChildrenBlocks, queryDatabase } from '@/lib/notionApi/endpoint'
-import { NotionBlockObject, notNull } from '@/lib/notionApi/types'
-import { createPagePropertyMap } from '@/lib/notionApi/useCase/page'
+
+import { createPagePropertyMap } from '@/infra/notionApi/client/page'
+import { getChildrenBlocks, queryDatabase } from '@/infra/notionApi/endpoint'
+import { NotionBlockObject, notNull } from '@/infra/notionApi/types'
 import {
   Post,
   BlockObjects,

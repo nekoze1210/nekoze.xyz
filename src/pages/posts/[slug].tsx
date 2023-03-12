@@ -1,10 +1,10 @@
-import { hrefTo } from '@storybook/addon-links'
 import dayjs from 'dayjs'
 import { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import React from 'react'
+
 import { renderPostBlock } from '@/components/PostBlock'
-import { getPublicPageContentsBySlug, listPublicPages } from '@/lib/notionApi/useCase'
+import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
 import { Tag, Post } from '@/types/post'
 
 type PostProps = {
@@ -36,7 +36,7 @@ const Post: NextPage<PostProps> = ({ post }) => {
           <span className='text-gray-500'>{dayjs(post.date).format('YYYY-MM-DD')} </span>
         </time>
         <div className='pt-12'>
-          {post.blocks.map((block: any) => {
+          {post.blocks.map((block) => {
             return renderPostBlock(block)
           })}
         </div>

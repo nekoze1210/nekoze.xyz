@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { VFC } from 'react'
+
 import { Post } from '@/types/post'
 
 export const PostThumbnail: VFC<Post> = (post: Post) => {
