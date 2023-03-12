@@ -7,7 +7,7 @@ import { ParagraphBlock } from '@/components/postBlocks/Paragraph'
 import { QuoteBlock } from '@/components/postBlocks/Quote'
 import { TodoBlock } from '@/components/postBlocks/Todo'
 import {
-  BlockObject,
+  BlockObjectBase,
   Code,
   Heading,
   Image as PostImage,
@@ -17,7 +17,7 @@ import {
   ToDo,
 } from '@/types/post'
 
-export const renderPostBlock = (block: BlockObject) => {
+export const renderPostBlock = (block: BlockObjectBase) => {
   switch (block.type) {
     case 'paragraph':
       const paragraph = block as Paragraph
@@ -74,7 +74,7 @@ export const renderPostBlock = (block: BlockObject) => {
             isChild={list.isChild}
             type={list.type}
           >
-            {list.childrenBlocks.map((child: BlockObject) => {
+            {list.childrenBlocks.map((child: BlockObjectBase) => {
               if (child.type === 'bulleted_list_item') {
                 return renderPostBlock(child)
               }

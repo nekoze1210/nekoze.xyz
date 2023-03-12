@@ -52,9 +52,12 @@ export const getStaticProps = async (context: { params: { tagName: string } }) =
 
 export const getStaticPaths = async () => {
   const posts = await listPublicPages()
-  let duplicateTagArray: any[] = []
+  let duplicateTagArray: string[][] = []
   let tagArray = []
   posts.map((post) => {
+    if (!post.tags) {
+      return
+    }
     duplicateTagArray = duplicateTagArray.concat(post.tags)
   })
   tagArray = duplicateTagArray.filter(function (x, i, self) {

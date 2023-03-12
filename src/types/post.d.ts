@@ -1,3 +1,5 @@
+import { Block } from '@babel/types'
+
 export type Tag = {
   name: string
 }
@@ -38,13 +40,14 @@ export const BLOCK_TYPES = [
 export type BlockTuple = typeof BLOCK_TYPES
 export type BlockType = BlockTuple[number]
 
-export type BlockObject = {
+export type BlockObjectBase = {
   id: string
   type: BlockType
   isChild: boolean
 }
 
-export type BlockObjects = (Heading | Divider | Quote | ToDo | List)[]
+export type BlockObject = Heading | Divider | Quote | ToDo | List
+export type BlockObjects = BlockObject[]
 
 export type Annotations = {
   bold: false
@@ -64,32 +67,32 @@ export type Text = {
 export type Paragraph = {
   type: 'paragraph'
   texts: Text[] | []
-} & BlockObject
+} & BlockObjectBase
 
 export type Heading = {
   type: 'heading_1' | 'heading_2' | 'heading_3'
   texts: Text[] | []
   heading_type: 'heading_1' | 'heading_2' | 'heading_3'
-} & BlockObject
+} & BlockObjectBase
 
 export type Quote = {
   texts: Text[] | []
-} & BlockObject
+} & BlockObjectBase
 
 export type ToDo = {
   texts: Text[] | []
   isChecked: boolean
-} & BlockObject
+} & BlockObjectBase
 
 export type Code = {
   text: string
   language: string
-} & BlockObject
+} & BlockObjectBase
 
 export type Image = {
   url: string
   caption: Text[] | []
-} & BlockObject
+} & BlockObjectBase
 
 export type List = {
   type: 'numbered_list_item' | 'bulleted_list_item'
@@ -97,7 +100,7 @@ export type List = {
   texts: Text[] | []
   hasChildren: boolean
   childrenBlocks: BlockObjects | []
-} & BlockObject
+} & BlockObjectBase
 
 export type Post = {
   id: string
