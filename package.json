@@ -101,6 +101,6 @@
     "qs": "^6.7.3",
     "terser": "^5.14.2",
     "trim": "^0.0.3",
-    "trim-newlines": "^3.0.1"
+    "trim-newlines": "^4.0.0"
   }
 }
