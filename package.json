@@ -94,7 +94,7 @@
     "webpack": "^5.75.0"
   },
   "resolutions": {
-    "decode-uri-component": "^0.2.1",
+    "decode-uri-component": "^0.4.0",
     "glob-parent": "^5.1.2",
     "http-cache-semantics": "^4.1.1",
     "json5": "^2.2.2",
