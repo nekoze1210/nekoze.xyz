@@ -19,6 +19,7 @@ import {
   Text,
   ToDo,
 } from '@/types/post'
+import { sleep } from '@/utils/sleep'
 
 const databaseId = process.env.NOTION_DATABASE_ID
 const internalPostImagesPath = '/post-images'
@@ -51,6 +52,7 @@ export const getPublicPageContentsBySlug = async (slug: string): Promise<Post> =
   const blocksWithChildren = await getChildrenBlocks(database.id)
   const props = createPagePropertyMap(database)
   const articleBlocks: BlockObjects = await toViewModelArticle(blocksWithChildren)
+  await sleep(2000)
   return {
     id: database.id,
     title: props.get('title', 'title')?.title[0]?.plain_text || '',
