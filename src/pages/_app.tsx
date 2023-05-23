@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           description: '思ったことや学んだことを書きます',
           type: 'website',
           locale: 'ja_JP',
-          url: process.env.SITE_URL || 'https://blog.nekoze.xyz',
+          url: process.env.BLOG_SITE_URL || 'https://blog.nekoze.xyz',
           site_name: 'nekolog',
         }}
         twitter={{

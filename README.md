@@ -37,7 +37,7 @@ mv .env.example .env.local
 ...
 NOTION_TOKEN=Your Notion API Token
 NOTION_DATABASE_ID=Your Notion Database ID
-SITE_URL=Your Website URL
+BLOG_SITE_URL=Your Website URL
 ...
 ```
 

@@ -21,7 +21,7 @@ const Tags: NextPage<TagsProps> = ({ posts, tagName }) => {
       <NextSeo
         openGraph={{
           title: `#${tagName}`,
-          url: `${process.env.SITE_URL}/tags/${tagName}`,
+          url: `${process.env.BLOG_SITE_URL}/tags/${tagName}`,
         }}
       />
       <main>

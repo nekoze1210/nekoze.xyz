@@ -22,7 +22,7 @@ const Post: NextPage<PostProps> = ({ post }) => {
         openGraph={{
           title: post.title,
           type: 'article',
-          url: `${process.env.SITE_URL}/${post.slug}`,
+          url: `${process.env.BLOG_SITE_URL}/${post.slug}`,
           article: {
             authors: ['@nekoze_da'],
             publishedTime: dayjs(post.date).format(),
