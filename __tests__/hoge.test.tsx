@@ -5,7 +5,7 @@ import Home from '@/app/page'
 
 describe('Home', () => {
   it('renders a heading', () => {
-    render(<Home posts={[]} />)
+    render(<Home />)
 
     expect(screen.getAllByRole('list')).toBeTruthy()
   })
