@@ -1,11 +1,13 @@
+'use client'
+
 import Prism from 'prismjs'
-import { useEffect, VFC } from 'react'
+import { useEffect, FC } from 'react'
 
 import { Code } from '@/types/post'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/themes/prism-tomorrow.css'
 
-export const CodeBlock: VFC<Code> = ({ id, text, language }) => {
+export const CodeBlock: FC<Code> = ({ id, text, language }) => {
   useEffect(() => {
     Prism.highlightAll()
   })

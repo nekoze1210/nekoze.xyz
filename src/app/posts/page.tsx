@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
 
@@ -10,7 +9,8 @@ type HomeProps = {
   posts: Post[]
 }
 
-const Posts: NextPage<HomeProps> = ({ posts }) => {
+const Posts: () => Promise<JSX.Element> = async () => {
+  const posts = await getData()
   return (
     <div>
       <Head>
@@ -29,11 +29,6 @@ const Posts: NextPage<HomeProps> = ({ posts }) => {
 
 export default Posts
 
-export const getStaticProps = async () => {
-  const posts = await listPublicPages()
-  return {
-    props: {
-      posts: posts,
-    },
-  }
+const getData = async () => {
+  return await listPublicPages()
 }

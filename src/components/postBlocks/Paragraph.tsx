@@ -1,9 +1,10 @@
-import { VFC } from 'react'
+'use client'
+import { FC } from 'react'
 
 import { TextBlock } from '@/components/postBlocks/Text'
 import { Paragraph } from '@/types/post'
 
-export const ParagraphBlock: VFC<Paragraph> = ({ id, texts }) => {
+export const ParagraphBlock: FC<Paragraph> = ({ id, texts }) => {
   if (!texts) return <p />
   const textBlocks = texts.map((text, index) => {
     return (

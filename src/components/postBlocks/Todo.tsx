@@ -1,9 +1,10 @@
-import React, { VFC } from 'react'
+'use client'
+import { FC } from 'react'
 
 import { TextBlock } from '@/components/postBlocks/Text'
 import { ToDo } from '@/types/post'
 
-export const TodoBlock: VFC<ToDo> = ({ id, texts, isChecked }) => {
+export const TodoBlock: FC<ToDo> = ({ id, texts, isChecked }) => {
   return (
     <div className='flex items-start'>
       <div className='flex items-center h-4'>

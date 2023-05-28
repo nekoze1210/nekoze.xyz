@@ -1,9 +1,11 @@
-import React, { VFC } from 'react'
+'use client'
+
+import React, { FC } from 'react'
 import Zoom from 'react-medium-image-zoom'
 
 import { Image as PostImage } from '@/types/post'
 
-export const ImageBlock: VFC<PostImage> = ({ url, id, caption }) => {
+export const ImageBlock: FC<PostImage> = ({ url, id, caption }) => {
   return (
     <div>
       <figure className={'mx-auto'}>

@@ -5,7 +5,6 @@ import {
 } from '@notionhq/client/build/src/api-endpoints'
 
 import { NotionBlockObject, NotionDatabaseObject } from '@/infra/notionApi/types'
-import { sleep } from '@/utils/sleep'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -33,7 +32,6 @@ export const getChildrenBlocks = async (blockId: string, depth = 0) => {
       if ('type' in block) {
         const children = await getChildrenBlocks(block.id, depth + 1)
         blocks.push({ ...block, depth, children })
-        await sleep(2000)
       }
     }
     cursor = res.has_more ? res.next_cursor : null

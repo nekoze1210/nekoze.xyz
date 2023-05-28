@@ -1,4 +1,5 @@
-import { ReactNode, VFC } from 'react'
+'use client'
+import { ReactNode, FC } from 'react'
 
 import { TextBlock } from '@/components/postBlocks/Text'
 import { List } from '@/types/post'
@@ -7,7 +8,7 @@ export type ListProps = {
   children?: ReactNode
 } & List
 
-export const ListBlock: VFC<ListProps> = ({
+export const ListBlock: FC<ListProps> = ({
   id,
   listType,
   hasChildren,

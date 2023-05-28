@@ -1,10 +1,12 @@
+'use client'
+
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import { VFC } from 'react'
+import { FC } from 'react'
 
-import { Post } from '@/types/post'
+import { PostPage } from '@/types/post'
 
-export const PostThumbnail: VFC<Post> = (post: Post) => {
+export const PostThumbnail: FC<PostPage> = (post: PostPage) => {
   return (
     <li
       className='border-t border-aluminium dark:border-abbey dark:bg-cod-gray mt-3 first:border-t-0'
@@ -34,7 +36,7 @@ export const PostThumbnail: VFC<Post> = (post: Post) => {
           {post.tags.map((tag) => {
             return (
               <Link
-                href={`/tags/${tag}`}
+                href={`/posts/tags/${tag}`}
                 key={post.id + '_' + tag}
                 className='text-md hover:underline mr-2 '
               >

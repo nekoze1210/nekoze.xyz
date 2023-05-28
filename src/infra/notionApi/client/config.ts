@@ -1,0 +1,6 @@
+export const SLUG_PROPERTY_ID = 'd%5E%3Ed'
+export const DESCRIPTION_PROPERTY_ID = '%40ixV'
+export const OG_IMAGE_URL_PROPERTY_ID = '_oVp'
+export const THUMBNAIL_IMAGE_URL_PROPERTY_ID = '3CjCF'
+export const TAGS_PROPERTY_ID = '_%3A%3Ey'
+export const DATE_PROPERTY_ID = 'L%3CK%5E'
