@@ -33,6 +33,7 @@ export const getChildrenBlocks = async (blockId: string, depth = 0) => {
       if ('type' in block) {
         const children = await getChildrenBlocks(block.id, depth + 1)
         blocks.push({ ...block, depth, children })
+        // NOTE: https://developers.notion.com/reference/request-limits#rate-limits
         await sleep(500)
       }
     }
