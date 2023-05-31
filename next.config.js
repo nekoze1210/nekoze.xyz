@@ -7,7 +7,6 @@ module.exports = {
   experimental: {
     appDir: true,
   },
-  // output: 'export',
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
@@ -16,28 +15,4 @@ module.exports = {
   images: {
     domains: ['s3.us-west-2.amazonaws.com'],
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/:path*',
-  //       has: [
-  //         {
-  //           type: 'host',
-  //           value: process.env.BLOG_SITE_URL,
-  //         },
-  //       ],
-  //       destination: '/posts/:path*',
-  //     },
-  //   ]
-  // },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/posts/:path*',
-  //       destination: `${process.env.BLOG_SITE_URL}/posts/:path*`,
-  //       permanent: false,
-  //       basePath: false,
-  //     },
-  //   ]
-  // },
 }

@@ -14,7 +14,7 @@ export default function HomePage() {
         <title>nekoze.xyz</title>
       </Head>
       <main>
-        <p>TODO</p>
+        <h2>Daiki Nagaoka</h2>
       </main>
     </div>
   )
