@@ -8,7 +8,7 @@ import { MobileHeader } from '@/components/MobileHeader'
 
 const notoSansJp = Noto_Sans_JP({ subsets: ['latin'] })
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='ja-JP'>
       <body
@@ -20,9 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <DesktopHeader />
           </nav>
         </header>
-
         <div className={'container mx-auto max-w-[806px]'}>{children}</div>
       </body>
     </html>
   )
 }
+
+export default RootLayout

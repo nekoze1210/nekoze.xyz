@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import React, { FC, useState } from 'react'
 import {
   RxCross1,
@@ -17,7 +17,6 @@ import { useTheme } from '@/hooks/theme'
 export const MobileHeader: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { isDark, toggleDarkMode } = useTheme()
-  const router = useRouter()
   const pathName = usePathname()
 
   return (
