@@ -72,7 +72,7 @@ export const MobileHeader: FC = () => {
           </li>
           <li className={`flex justify-start ml-1 rounded-[10px]}`}>
             <HeaderNavigationLink
-              href={'/posts'}
+              href={'https://twitter.com/nekoze_da'}
               icon={RxTwitterLogo}
               popoverText={'Twitter'}
               target={'_blank'}
@@ -81,7 +81,7 @@ export const MobileHeader: FC = () => {
           </li>
           <li className={`flex justify-start ml-1 rounded-[10px]`}>
             <HeaderNavigationLink
-              href={'/posts'}
+              href={'https://github.com/nekoze1210'}
               icon={RxGithubLogo}
               popoverText={'GitHub'}
               target={'_blank'}
