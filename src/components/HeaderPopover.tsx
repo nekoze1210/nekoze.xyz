@@ -8,7 +8,7 @@ export const HeaderPopover: FC<{ text?: string; visible: boolean }> = ({ text, v
       } hidden transition duration-150 ease-in-out md:mt-2 w-auto absolute top-full bottom-0`}
     >
       {text && (
-        <div className={'bg-gray-400 p-2 rounded-[5px]'}>
+        <div className={'bg-[#FF4D6B] p-2 rounded-[5px]'}>
           <p>{text}</p>
         </div>
       )}

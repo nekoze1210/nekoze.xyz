@@ -47,7 +47,9 @@ export const MobileHeader: FC = () => {
         </div>
         <ul className={`md:hidden flex flex-col`}>
           <li
-            className={`flex justify-start mx-1 ${pathName === '/' && 'bg-red-300'} rounded-[10px]`}
+            className={`flex justify-start mx-1 ${
+              pathName === '/' && 'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
+            } rounded-[10px]`}
           >
             <HeaderNavigationLink
               href={'/'}
@@ -58,7 +60,7 @@ export const MobileHeader: FC = () => {
           </li>
           <li
             className={`flex justify-start ml-1 ${
-              pathName === '/posts' && 'bg-red-300'
+              pathName === '/posts' && 'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
             } rounded-[10px]`}
           >
             <HeaderNavigationLink

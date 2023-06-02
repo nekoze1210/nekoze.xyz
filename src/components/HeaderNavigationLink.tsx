@@ -23,7 +23,7 @@ export const HeaderNavigationLink: FC<{
         <Link
           href={href}
           className={
-            'w-[45px] h-[45px] hover:bg-gray-400 transition-all rounded-[10px] flex justify-center items-center relative'
+            'w-[45px] h-[45px] hover:bg-gradient-to-br hover:text-black hover:from-[#FF4D6B] hover:to-[#5B69B1] rounded-[10px] flex justify-center items-center relative'
           }
           target={target}
           onClick={onClick}
