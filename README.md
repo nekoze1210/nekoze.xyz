@@ -1,14 +1,14 @@
 # nekoze.xyz
 The homepage of [@nekoze1210](https://github.com/nekoze1210)
 
-## [WIP] Portfolio
+## Portfolio
 You can check out my personal biography and resume.
 - [nekoze.xyz](https://nekoze.xyz)
 
 ## Blog
 You can read my posts.
-- [blog.nekoze.xyz](https://blog.nekoze.xyz)
-- [Sitemap](https://blog.nekoze.xyz/sitemap.xml)
+- [nekoze.xyz](https://nekoze.xyz/posts)
+- [Sitemap](https://nekoze.xyz/sitemap.xml)
 
 ## Getting Started
 1. Install dependencies:
@@ -37,7 +37,7 @@ mv .env.example .env.local
 ...
 NOTION_TOKEN=Your Notion API Token
 NOTION_DATABASE_ID=Your Notion Database ID
-BLOG_SITE_URL=Your Website URL
+SITE_URL=Your Website URL
 ...
 ```
 
