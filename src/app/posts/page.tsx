@@ -14,9 +14,10 @@ const Posts: () => Promise<JSX.Element> = async () => {
   return (
     <div>
       <Head>
-        <title>nekoLog</title>
+        <title>nekoze.xyz | posts</title>
       </Head>
       <main>
+        <h2 className={'text-[30px] font-bold mt-10'}>Posts</h2>
         <ul className='px-3'>
           {posts.map((post) => {
             return <PostThumbnail {...post} key={post.id} />
