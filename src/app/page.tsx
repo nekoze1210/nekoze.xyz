@@ -1,10 +1,10 @@
-import Head from 'next/head'
-import React from 'react'
+'use client'
 
-import Biography from '@/components/portfolio/Biography'
-import Experiences from '@/components/portfolio/Experiences'
+import Head from 'next/head'
+
 import Profile from '@/components/portfolio/Profile'
 import Skills from '@/components/portfolio/Skills'
+import WorkExperiences from '@/components/portfolio/WorkExperiences'
 
 export default function HomePage() {
   return (
@@ -13,10 +13,17 @@ export default function HomePage() {
         <title>nekoze.xyz</title>
       </Head>
       <main>
-        <Profile />
-        <Biography />
-        <Skills />
-        <Experiences />
+        <div className={'mt-10'}>
+          <Profile />
+        </div>
+        <div className={'flex flex-col md:flex-row justify-between'}>
+          <div className={'drop-shadow mt-10 md:mr-2 md:basis-2/3'}>
+            <Skills />
+          </div>
+          <div className={'drop-shadow my-10 md:ml-2 md:basis-1/3'}>
+            <WorkExperiences />
+          </div>
+        </div>
       </main>
     </div>
   )

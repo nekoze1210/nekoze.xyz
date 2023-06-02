@@ -15,12 +15,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         className={`bg-wild-sand text-black dark:bg-cod-gray dark:text-white ${notoSansJp.className}`}
       >
         <header>
-          <nav className={'max-w-[802px] mt-[10px] mx-auto'}>
+          <nav className={'max-w-[1200px] mt-[10px] mx-auto'}>
             <MobileHeader />
             <DesktopHeader />
           </nav>
         </header>
-        <div className={'container mx-auto max-w-[806px]'}>{children}</div>
+        <div className={'container mx-auto max-w-[1200px]'}>{children}</div>
       </body>
     </html>
   )

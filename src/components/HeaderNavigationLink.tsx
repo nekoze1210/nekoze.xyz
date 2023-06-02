@@ -9,7 +9,8 @@ export const HeaderNavigationLink: FC<{
   icon: IconType
   popoverText?: string
   target?: string | 'self'
-}> = ({ href, icon, popoverText, target }) => {
+  onClick?: () => void
+}> = ({ href, icon, popoverText, target, onClick }) => {
   const [hovered, setHovered] = useState(false)
   return (
     <>
@@ -25,6 +26,7 @@ export const HeaderNavigationLink: FC<{
             'w-[45px] h-[45px] hover:bg-gray-400 transition-all rounded-[10px] flex justify-center items-center relative'
           }
           target={target}
+          onClick={onClick}
         >
           <>{createElement(icon)}</>
           <HeaderPopover text={popoverText} visible={hovered} />
@@ -32,7 +34,7 @@ export const HeaderNavigationLink: FC<{
       </div>
       {/* Mobile */}
       <div className={'md:hidden rounded-[10px]'}>
-        <Link href={href} target={target} className={'flex flex-row'}>
+        <Link href={href} target={target} className={'flex flex-row'} onClick={onClick}>
           <div className={'w-[45px] h-[45px] transition-all flex justify-center items-center'}>
             {createElement(icon)}
           </div>

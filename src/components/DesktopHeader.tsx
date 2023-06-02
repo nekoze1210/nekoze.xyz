@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxTwitterLogo } from 'react-icons/rx'
+import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxSun, RxTwitterLogo } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
 import { useTheme } from '@/hooks/theme'
@@ -27,7 +27,11 @@ export const DesktopHeader: FC = () => {
       </ul>
       <div className='hidden -mx-4 md:flex lg:items-center'>
         <button onClick={() => toggleDarkMode(!isDark)}>
-          <HeaderNavigationLink href={'#'} icon={RxMoon} />
+          {isDark ? (
+            <HeaderNavigationLink href={'#'} icon={RxSun} />
+          ) : (
+            <HeaderNavigationLink href={'#'} icon={RxMoon} />
+          )}
         </button>
       </div>
     </div>

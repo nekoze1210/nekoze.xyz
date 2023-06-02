@@ -9,6 +9,7 @@ import {
   RxHamburgerMenu,
   RxHome,
   RxMoon,
+  RxSun,
   RxTwitterLogo,
 } from 'react-icons/rx'
 
@@ -32,8 +33,8 @@ export const MobileHeader: FC = () => {
       <div
         className={
           isOpen
-            ? 'md:hidden fixed top-0 left-0 h-full w-1/2 dark:bg-abbey bg-gray-50 transition-all'
-            : 'md:hidden fixed top-0 left-[-100%] h-full w-1/2 transition-all'
+            ? 'md:hidden fixed top-0 z-50 left-0 h-full w-2/3 dark:bg-black bg-gray-50 transition-all'
+            : 'md:hidden fixed top-0 z-50 left-[-100%] h-full w-1/2 transition-all'
         }
       >
         <div className={'flex justify-start items-center'}>
@@ -48,14 +49,24 @@ export const MobileHeader: FC = () => {
           <li
             className={`flex justify-start mx-1 ${pathName === '/' && 'bg-red-300'} rounded-[10px]`}
           >
-            <HeaderNavigationLink href={'/'} icon={RxHome} popoverText={'Home'} />
+            <HeaderNavigationLink
+              href={'/'}
+              icon={RxHome}
+              popoverText={'Home'}
+              onClick={() => setIsOpen(false)}
+            />
           </li>
           <li
             className={`flex justify-start ml-1 ${
               pathName === '/posts' && 'bg-red-300'
             } rounded-[10px]`}
           >
-            <HeaderNavigationLink href={'/posts'} icon={RxFileText} popoverText={'Posts'} />
+            <HeaderNavigationLink
+              href={'/posts'}
+              icon={RxFileText}
+              popoverText={'Posts'}
+              onClick={() => setIsOpen(false)}
+            />
           </li>
           <li className={`flex justify-start ml-1 rounded-[10px]}`}>
             <HeaderNavigationLink
@@ -63,6 +74,7 @@ export const MobileHeader: FC = () => {
               icon={RxTwitterLogo}
               popoverText={'Twitter'}
               target={'_blank'}
+              onClick={() => setIsOpen(false)}
             />
           </li>
           <li className={`flex justify-start ml-1 rounded-[10px]`}>
@@ -71,11 +83,16 @@ export const MobileHeader: FC = () => {
               icon={RxGithubLogo}
               popoverText={'GitHub'}
               target={'_blank'}
+              onClick={() => setIsOpen(false)}
             />
           </li>
           <li className={`flex justify-start ml-1`}>
             <button onClick={() => toggleDarkMode(!isDark)}>
-              <HeaderNavigationLink href={'#'} icon={RxMoon} />
+              {isDark ? (
+                <HeaderNavigationLink href={'#'} icon={RxSun} />
+              ) : (
+                <HeaderNavigationLink href={'#'} icon={RxMoon} />
+              )}
             </button>
           </li>
         </ul>
