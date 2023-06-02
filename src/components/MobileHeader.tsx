@@ -91,14 +91,22 @@ export const MobileHeader: FC = () => {
           <li className={`flex justify-start ml-1`}>
             <button onClick={() => toggleDarkMode(!isDark)}>
               {isDark ? (
-                <HeaderNavigationLink href={'#'} icon={RxSun} />
+                <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />
               ) : (
-                <HeaderNavigationLink href={'#'} icon={RxMoon} />
+                <HeaderNavigationLink href={`${pathName}/#`} icon={RxMoon} />
               )}
             </button>
           </li>
         </ul>
       </div>
+      <div
+        className={
+          isOpen
+            ? 'md:hidden fixed top-0 z-50 right-0 h-full w-1/3 bg-black opacity-30 delay-100'
+            : 'md:hidden fixed top-0 z-50 right-[100%] h-full w-1/2'
+        }
+        onClick={() => setIsOpen(false)}
+      ></div>
     </>
   )
 }
