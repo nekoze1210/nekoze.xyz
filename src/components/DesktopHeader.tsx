@@ -44,9 +44,9 @@ export const DesktopHeader: FC = () => {
       <div className='hidden -mx-4 md:flex lg:items-center'>
         <button onClick={() => toggleDarkMode(!isDark)}>
           {isDark ? (
-            <HeaderNavigationLink href={'#'} icon={RxSun} />
+            <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />
           ) : (
-            <HeaderNavigationLink href={'#'} icon={RxMoon} />
+            <HeaderNavigationLink href={`${pathName}/#`} icon={RxMoon} />
           )}
         </button>
       </div>
