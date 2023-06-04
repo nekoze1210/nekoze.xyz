@@ -1,29 +1,22 @@
-import { NextPage } from 'next'
 import Head from 'next/head'
-import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import { PostThumbnail } from '@/components/PostThumbnail'
 import { listPublicPages, listPublicPagesByTag } from '@/infra/notionApi/client'
-import { Post } from '@/types/post'
 
-type TagsProps = {
-  posts: Post[]
-  tagName: string
-}
-
-const Tags: NextPage<TagsProps> = ({ posts, tagName }) => {
+export default async function Tags({ params }: { params: { tagName: string } }) {
+  const { posts, tagName } = await getData(params)
   return (
     <div>
       <Head>
         <title>Tag: #{tagName} - nekoLog</title>
       </Head>
-      <NextSeo
-        openGraph={{
-          title: `#${tagName}`,
-          url: `${process.env.SITE_URL}/tags/${tagName}`,
-        }}
-      />
+      {/*<NextSeo*/}
+      {/*  openGraph={{*/}
+      {/*    title: `#${tagName}`,*/}
+      {/*    url: `${process.env.BLOG_SITE_URL}/posts/tags/${tagName}`,*/}
+      {/*  }}*/}
+      {/*/>*/}
       <main>
         <h1 className='text-2xl font-bold tracking-tight'>#{tagName}</h1>
         <ul className='px-3'>
@@ -36,21 +29,16 @@ const Tags: NextPage<TagsProps> = ({ posts, tagName }) => {
   )
 }
 
-export default Tags
-
-export const getStaticProps = async (context: { params: { tagName: string } }) => {
-  const { tagName } = context.params
-
+const getData = async (params: { tagName: string }) => {
+  const { tagName } = params
   const posts = await listPublicPagesByTag(tagName)
   return {
-    props: {
-      posts,
-      tagName,
-    },
+    posts,
+    tagName,
   }
 }
 
-export const getStaticPaths = async () => {
+export async function generateStaticParams() {
   const posts = await listPublicPages()
   let duplicateTagArray: string[][] = []
   let tagArray = []
@@ -63,12 +51,8 @@ export const getStaticPaths = async () => {
   tagArray = duplicateTagArray.filter(function (x, i, self) {
     return self.indexOf(x) === i
   })
-  return {
-    paths: tagArray.map((tag) => ({
-      params: {
-        tagName: tag,
-      },
-    })),
-    fallback: false,
-  }
+  const paths = tagArray.map((tag) => ({
+    tagName: tag,
+  }))
+  return [...paths]
 }

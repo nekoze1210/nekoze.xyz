@@ -1,15 +1,24 @@
 import { Client } from '@notionhq/client'
 import { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints'
 
+import {
+  DATE_PROPERTY_ID,
+  DESCRIPTION_PROPERTY_ID,
+  OG_IMAGE_URL_PROPERTY_ID,
+  SLUG_PROPERTY_ID,
+  TAGS_PROPERTY_ID,
+  THUMBNAIL_IMAGE_URL_PROPERTY_ID,
+} from '@/infra/notionApi/client/config'
 import { NotionDatabaseObject } from '@/infra/notionApi/types'
 import { MatchType } from '@/types'
+import { PostPage } from '@/types/post'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 })
 const databaseId = process.env.NOTION_DATABASE_ID
 
-export const listPublicPages = async () => {
+export const listPublicPages = async (): Promise<PostPage[]> => {
   const pages = await getPages({
     database_id: databaseId as string,
     filter: {
@@ -30,23 +39,10 @@ export const listPublicPages = async () => {
     ],
   })
 
-  return pages.map((page: NotionDatabaseObject) => {
-    const props = createPagePropertyMap(page)
-    return {
-      id: page.id,
-      title: props.get('title', 'title')?.title[0]?.plain_text,
-      slug: props.get('d%5E%3Ed', 'rich_text')?.rich_text[0]?.plain_text,
-      description: props.get('%40ixV', 'rich_text')?.rich_text[0]?.plain_text || '',
-      ogImageUrl: props.get('_oVp', 'rich_text')?.rich_text[0]?.plain_text || '',
-      thumbnailImageUrl: props.get('3CjCF', 'rich_text')?.rich_text[0]?.plain_text || '',
-      tags: props.get('_%3A%3Ey', 'multi_select')?.multi_select.map((tag) => tag.name),
-      date: props.get('L%3CK%5E', 'created_time')?.created_time,
-      isPublished: !page.archived,
-    }
-  })
+  return pages.map((page: NotionDatabaseObject) => convertPostPage(page))
 }
 
-export const listPublicPagesByTag = async (tag: string) => {
+export const listPublicPagesByTag = async (tag: string): Promise<PostPage[]> => {
   const pages = await getPages({
     database_id: databaseId,
     filter: {
@@ -72,20 +68,23 @@ export const listPublicPagesByTag = async (tag: string) => {
       },
     ],
   })
-  return pages.map((page: NotionDatabaseObject) => {
-    const props = createPagePropertyMap(page)
-    return {
-      id: page.id,
-      title: props.get('title', 'title')?.title[0]?.plain_text,
-      slug: props.get('d%5E%3Ed', 'rich_text')?.rich_text[0]?.plain_text,
-      description: props.get('%40ixV', 'rich_text')?.rich_text[0]?.plain_text || '',
-      ogImageUrl: props.get('_oVp', 'rich_text')?.rich_text[0]?.plain_text || '',
-      thumbnailImageUrl: props.get('3CjCF', 'rich_text')?.rich_text[0]?.plain_text || '',
-      tags: props.get('_%3A%3Ey', 'multi_select')?.multi_select.map((tag) => tag.name),
-      date: props.get('L%3CK%5E', 'created_time')!.created_time,
-      isPublished: !page.archived,
-    }
-  })
+  return pages.map((page: NotionDatabaseObject) => convertPostPage(page))
+}
+
+const convertPostPage = (page: NotionDatabaseObject): PostPage => {
+  const props = createPagePropertyMap(page)
+  return {
+    id: page.id!,
+    title: props.get('title', 'title')?.title[0]?.plain_text!,
+    slug: props.get(SLUG_PROPERTY_ID, 'rich_text')?.rich_text[0]?.plain_text!,
+    description: props.get(DESCRIPTION_PROPERTY_ID, 'rich_text')?.rich_text[0]?.plain_text || null,
+    ogImageUrl: props.get(OG_IMAGE_URL_PROPERTY_ID, 'rich_text')?.rich_text[0]?.plain_text || null,
+    thumbnailImageUrl:
+      props.get(THUMBNAIL_IMAGE_URL_PROPERTY_ID, 'rich_text')?.rich_text[0]?.plain_text || null,
+    tags: props.get(TAGS_PROPERTY_ID, 'multi_select')?.multi_select.map((tag) => tag.name) || [],
+    date: props.get(DATE_PROPERTY_ID, 'created_time')?.created_time!,
+    isPublished: !page.archived,
+  }
 }
 
 const getPages = async (params: QueryDatabaseParameters): Promise<NotionDatabaseObject[]> => {

@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
 
@@ -10,13 +9,15 @@ type HomeProps = {
   posts: Post[]
 }
 
-const Home: NextPage<HomeProps> = ({ posts }) => {
+const Posts: () => Promise<JSX.Element> = async () => {
+  const posts = await getData()
   return (
     <div>
       <Head>
-        <title>nekoLog</title>
+        <title>nekoze.xyz | posts</title>
       </Head>
       <main>
+        <h2 className={'text-[30px] font-bold mt-10'}>Posts</h2>
         <ul className='px-3'>
           {posts.map((post) => {
             return <PostThumbnail {...post} key={post.id} />
@@ -27,13 +28,8 @@ const Home: NextPage<HomeProps> = ({ posts }) => {
   )
 }
 
-export default Home
+export default Posts
 
-export const getStaticProps = async () => {
-  const posts = await listPublicPages()
-  return {
-    props: {
-      posts: posts,
-    },
-  }
+const getData = async () => {
+  return await listPublicPages()
 }

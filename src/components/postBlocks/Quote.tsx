@@ -1,9 +1,10 @@
-import { VFC } from 'react'
+'use client'
+import { FC } from 'react'
 
 import { TextBlock } from '@/components/postBlocks/Text'
 import { Quote } from '@/types/post'
 
-export const QuoteBlock: VFC<Quote> = ({ id, texts }) => {
+export const QuoteBlock: FC<Quote> = ({ id, texts }) => {
   return (
     <div className='max-w-4xl text-gray-800 dark:text-white bg-white dark:bg-cod-gray border-l-4 border-wild-sand dark:border-gr'>
       <div className='mb-2'>

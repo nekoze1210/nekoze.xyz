@@ -1,9 +1,10 @@
-import { VFC } from 'react'
+'use client'
+import { FC } from 'react'
 
 import { TextBlock } from '@/components/postBlocks/Text'
 import { Heading } from '@/types/post'
 
-export const HeadingBlock: VFC<Heading> = ({ id, heading_type, texts }) => {
+export const HeadingBlock: FC<Heading> = ({ id, heading_type, texts }) => {
   const text = texts.map((text, index) => (
     <TextBlock
       key={`heading_${id}_text_${index}`}

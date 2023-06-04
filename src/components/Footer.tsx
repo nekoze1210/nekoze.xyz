@@ -1,3 +1,4 @@
+'use client'
 const Footer = () => {
   const copyright = '©nekoze.xyz'
   return (

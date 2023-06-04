@@ -100,6 +100,18 @@ export type List = {
   childrenBlocks: BlockObjects | []
 } & BlockObjectBase
 
+export type PostPage = {
+  id: string
+  title: string
+  slug: string
+  description: string | null
+  ogImageUrl: string | null
+  thumbnailImageUrl: string | null
+  tags: string[]
+  date: string
+  isPublished: boolean
+}
+
 export type Post = {
   id: string
   slug: string

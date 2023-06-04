@@ -1,9 +1,10 @@
+'use client'
 import Link from 'next/link'
-import { VFC } from 'react'
+import { FC } from 'react'
 
 import { Text } from '@/types/post'
 
-export const TextBlock: VFC<Text> = ({ content, link, annotations }) => {
+export const TextBlock: FC<Text> = ({ content, link, annotations }) => {
   const { bold, code, strikethrough, underline, italic } = annotations
   const className =
     [
