@@ -16,11 +16,11 @@ export default function HomePage() {
         <div className={'mt-10'}>
           <Profile />
         </div>
-        <div className={'flex flex-col md:flex-row justify-between'}>
-          <div className={'drop-shadow mt-10 md:mr-2 md:basis-2/3'}>
+        <div className={'flex flex-col justify-between md:flex-row'}>
+          <div className={'mt-10 drop-shadow md:mr-2 md:basis-2/3'}>
             <Skills />
           </div>
-          <div className={'drop-shadow my-10 md:ml-2 md:basis-1/3'}>
+          <div className={'my-10 drop-shadow md:ml-2 md:basis-1/3'}>
             <WorkExperiences />
           </div>
         </div>

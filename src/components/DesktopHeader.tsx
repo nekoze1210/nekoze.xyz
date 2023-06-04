@@ -10,12 +10,12 @@ export const DesktopHeader: FC = () => {
   const pathName = usePathname()
 
   return (
-    <div className={'flex justify-between items-center mx-auto'}>
-      <ul className={'hidden -mx-4 md:flex space-x-3'}>
+    <div className={'mx-auto flex items-center justify-between'}>
+      <ul className={'-mx-4 hidden space-x-3 md:flex'}>
         <li
           className={`${
             pathName === '/' &&
-            'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black rounded-[10px]'
+            'rounded-[10px] bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
           }`}
         >
           <HeaderNavigationLink href={'/'} icon={RxHome} popoverText={'Home'} />
@@ -23,7 +23,7 @@ export const DesktopHeader: FC = () => {
         <li
           className={`${
             pathName === '/posts' &&
-            'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black rounded-[10px]'
+            'rounded-[10px] bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
           }`}
         >
           <HeaderNavigationLink href={'/posts'} icon={RxFileText} popoverText={'Posts'} />
@@ -41,7 +41,7 @@ export const DesktopHeader: FC = () => {
           target={'_blank'}
         />
       </ul>
-      <div className='hidden -mx-4 md:flex lg:items-center'>
+      <div className='-mx-4 hidden md:flex lg:items-center'>
         <button onClick={() => toggleDarkMode(!isDark)}>
           {isDark ? (
             <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />

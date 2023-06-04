@@ -16,14 +16,14 @@ export const HeaderNavigationLink: FC<{
     <>
       {/* Desktop */}
       <div
-        className='hidden md:flex md:flex-col items-center w-full'
+        className='hidden w-full items-center md:flex md:flex-col'
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <Link
           href={href}
           className={
-            'w-[45px] h-[45px] hover:bg-gradient-to-br hover:text-black hover:from-[#FF4D6B] hover:to-[#5B69B1] rounded-[10px] flex justify-center items-center relative'
+            'relative flex h-[45px] w-[45px] items-center justify-center rounded-[10px] hover:bg-gradient-to-br hover:from-[#FF4D6B] hover:to-[#5B69B1] hover:text-black'
           }
           target={target}
           onClick={onClick}
@@ -33,9 +33,9 @@ export const HeaderNavigationLink: FC<{
         </Link>
       </div>
       {/* Mobile */}
-      <div className={'md:hidden rounded-[10px]'}>
+      <div className={'rounded-[10px] md:hidden'}>
         <Link href={href} target={target} className={'flex flex-row'} onClick={onClick}>
-          <div className={'w-[45px] h-[45px] transition-all flex justify-center items-center'}>
+          <div className={'flex h-[45px] w-[45px] items-center justify-center transition-all'}>
             {createElement(icon)}
           </div>
           <p className={'flex items-center'}>{popoverText}</p>

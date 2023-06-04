@@ -24,7 +24,7 @@ export const MobileHeader: FC = () => {
     <>
       <div className={'md:hidden'}>
         <button
-          className={'w-[45px] h-[45px] flex justify-center items-center'}
+          className={'flex h-[45px] w-[45px] items-center justify-center'}
           onClick={() => setIsOpen(!isOpen)}
         >
           <RxHamburgerMenu />
@@ -33,21 +33,21 @@ export const MobileHeader: FC = () => {
       <div
         className={
           isOpen
-            ? 'md:hidden fixed top-0 z-50 left-0 h-full w-2/3 dark:bg-black bg-gray-50 transition-all'
-            : 'md:hidden fixed top-0 z-50 left-[-100%] h-full w-1/2 transition-all'
+            ? 'fixed left-0 top-0 z-50 h-full w-2/3 bg-gray-50 transition-all dark:bg-black md:hidden'
+            : 'fixed left-[-100%] top-0 z-50 h-full w-1/2 transition-all md:hidden'
         }
       >
-        <div className={'flex justify-start items-center'}>
+        <div className={'flex items-center justify-start'}>
           <button
-            className={'w-[45px] h-[45px] flex justify-center items-center'}
+            className={'flex h-[45px] w-[45px] items-center justify-center'}
             onClick={() => setIsOpen(false)}
           >
             <RxCross1 />
           </button>
         </div>
-        <ul className={`md:hidden flex flex-col`}>
+        <ul className={`flex flex-col md:hidden`}>
           <li
-            className={`flex justify-start mx-1 ${
+            className={`mx-1 flex justify-start ${
               pathName === '/' && 'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
             } rounded-[10px]`}
           >
@@ -59,7 +59,7 @@ export const MobileHeader: FC = () => {
             />
           </li>
           <li
-            className={`flex justify-start ml-1 ${
+            className={`ml-1 flex justify-start ${
               pathName === '/posts' && 'bg-gradient-to-br from-[#A8ED91] to-[#CCF7F4] text-black'
             } rounded-[10px]`}
           >
@@ -70,7 +70,7 @@ export const MobileHeader: FC = () => {
               onClick={() => setIsOpen(false)}
             />
           </li>
-          <li className={`flex justify-start ml-1 rounded-[10px]}`}>
+          <li className={`rounded-[10px]} ml-1 flex justify-start`}>
             <HeaderNavigationLink
               href={'https://twitter.com/nekoze_da'}
               icon={RxTwitterLogo}
@@ -79,7 +79,7 @@ export const MobileHeader: FC = () => {
               onClick={() => setIsOpen(false)}
             />
           </li>
-          <li className={`flex justify-start ml-1 rounded-[10px]`}>
+          <li className={`ml-1 flex justify-start rounded-[10px]`}>
             <HeaderNavigationLink
               href={'https://github.com/nekoze1210'}
               icon={RxGithubLogo}
@@ -88,7 +88,7 @@ export const MobileHeader: FC = () => {
               onClick={() => setIsOpen(false)}
             />
           </li>
-          <li className={`flex justify-start ml-1`}>
+          <li className={`ml-1 flex justify-start`}>
             <button onClick={() => toggleDarkMode(!isDark)}>
               {isDark ? (
                 <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />
@@ -102,8 +102,8 @@ export const MobileHeader: FC = () => {
       <div
         className={
           isOpen
-            ? 'md:hidden fixed top-0 z-50 right-0 h-full w-1/3 bg-black opacity-30 delay-100'
-            : 'md:hidden fixed top-0 z-50 right-[100%] h-full w-1/2'
+            ? 'fixed right-0 top-0 z-50 h-full w-1/3 bg-black opacity-30 delay-100 md:hidden'
+            : 'fixed right-[100%] top-0 z-50 h-full w-1/2 md:hidden'
         }
         onClick={() => setIsOpen(false)}
       ></div>

@@ -8,13 +8,13 @@ export const Header = () => {
     <>
       <nav
         className={
-          'text-black dark:text-white flex flex-wrap items-center justify-between space-x-3'
+          'flex flex-wrap items-center justify-between space-x-3 text-black dark:text-white'
         }
       >
         <Link href={'/posts'} legacyBehavior>
           <img
             src='https://avatars.githubusercontent.com/u/14988862?v=4'
-            className={'rounded-full h-10 w-10'}
+            className={'h-10 w-10 rounded-full'}
             alt={'logo'}
           />
         </Link>

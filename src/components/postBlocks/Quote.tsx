@@ -6,7 +6,7 @@ import { Quote } from '@/types/post'
 
 export const QuoteBlock: FC<Quote> = ({ id, texts }) => {
   return (
-    <div className='max-w-4xl text-gray-800 dark:text-white bg-white dark:bg-cod-gray border-l-4 border-wild-sand dark:border-gr'>
+    <div className='dark:border-gr max-w-4xl border-l-4 border-wild-sand bg-white text-gray-800 dark:bg-cod-gray dark:text-white'>
       <div className='mb-2'>
         <p className='px-4 text-gray-600 dark:text-white'>
           {texts.map((text, number) => (
