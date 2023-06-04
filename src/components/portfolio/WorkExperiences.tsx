@@ -1,8 +1,6 @@
 'use client'
 
-import Link from 'next/link'
 import React from 'react'
-import { RxExternalLink } from 'react-icons/rx'
 
 import Tile from '@/components/portfolio/Tile'
 import TileItem from '@/components/portfolio/TileItem'
@@ -48,18 +46,18 @@ const WorkExperiences = () => {
             </TileItemText>
           </TileItem>
         ))}
-        <div className={'flex justify-end items-end mt-5'}>
-          <Link
-            href={'/'}
-            target={'_blank'}
-            className={'flex items-end border-b-[1px] hover:text-blue-400 hover:border-blue-400'}
-          >
-            <p>Resume(JA)</p>
-            <p className={'ml-1'}>
-              <RxExternalLink />
-            </p>
-          </Link>
-        </div>
+        {/*<div className={'flex justify-end items-end mt-5'}>*/}
+        {/*  <Link*/}
+        {/*    href={'/'}*/}
+        {/*    target={'_blank'}*/}
+        {/*    className={'flex items-end border-b-[1px] hover:text-blue-400 hover:border-blue-400'}*/}
+        {/*  >*/}
+        {/*    <p>Resume(JA)</p>*/}
+        {/*    <p className={'ml-1'}>*/}
+        {/*      <RxExternalLink />*/}
+        {/*    </p>*/}
+        {/*  </Link>*/}
+        {/*</div>*/}
       </Tile>
     </>
   )
