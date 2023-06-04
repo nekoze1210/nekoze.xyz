@@ -5,10 +5,10 @@ export const HeaderPopover: FC<{ text?: string; visible: boolean }> = ({ text, v
     <div
       className={`${
         visible && 'md:block'
-      } hidden transition duration-150 ease-in-out md:mt-2 w-auto absolute top-full bottom-0`}
+      } absolute bottom-0 top-full hidden w-auto transition duration-150 ease-in-out md:mt-2`}
     >
       {text && (
-        <div className={'bg-[#FF4D6B] p-2 rounded-[5px]'}>
+        <div className={'rounded-[5px] bg-[#FF4D6B] p-2'}>
           <p>{text}</p>
         </div>
       )}

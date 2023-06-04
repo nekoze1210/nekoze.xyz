@@ -38,7 +38,7 @@ export const ListBlock: FC<ListProps> = ({
         )
       }
       return (
-        <ul className='pl-4 list-disc list-outside'>
+        <ul className='list-outside list-disc pl-4'>
           <li>
             {texts.map((text, index) => {
               return (

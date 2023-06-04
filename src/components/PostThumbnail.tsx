@@ -9,13 +9,13 @@ import { PostPage } from '@/types/post'
 export const PostThumbnail: FC<PostPage> = (post: PostPage) => {
   return (
     <li
-      className='border-t border-aluminium dark:border-abbey dark:bg-cod-gray mt-3 first:border-t-0'
+      className='mt-3 border-t border-aluminium first:border-t-0 dark:border-abbey dark:bg-cod-gray'
       key={post.id}
     >
       {post.thumbnailImageUrl ? (
         <Link href={`/posts/${encodeURIComponent(post.slug)}`} key={post.id}>
           <img
-            className='rounded-t-lg object-contain h-48 w-[806px] bg-wild-sand dark:bg-cod-gray'
+            className='h-48 w-[806px] rounded-t-lg bg-wild-sand object-contain dark:bg-cod-gray'
             src={post.thumbnailImageUrl}
             alt=''
           />
@@ -25,7 +25,7 @@ export const PostThumbnail: FC<PostPage> = (post: PostPage) => {
         <Link
           href={`/posts/${encodeURIComponent(post.slug)}`}
           key={post.id}
-          className='mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white tracking-wide'
+          className='mb-2 text-lg font-bold tracking-tight tracking-wide text-gray-900 dark:text-white'
         >
           {post.title}
         </Link>
@@ -38,7 +38,7 @@ export const PostThumbnail: FC<PostPage> = (post: PostPage) => {
               <Link
                 href={`/posts/tags/${tag}`}
                 key={post.id + '_' + tag}
-                className='text-md hover:underline mr-2 '
+                className='text-md mr-2 hover:underline '
               >
                 {`#${tag} `}
               </Link>

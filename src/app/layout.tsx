@@ -15,7 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         className={`bg-wild-sand text-black dark:bg-cod-gray dark:text-white ${notoSansJp.className}`}
       >
         <header>
-          <nav className={'max-w-[1200px] mt-[10px] mx-auto'}>
+          <nav className={'mx-auto mt-[10px] max-w-[1200px]'}>
             <MobileHeader />
             <DesktopHeader />
           </nav>

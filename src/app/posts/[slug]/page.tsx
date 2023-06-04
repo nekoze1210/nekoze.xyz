@@ -22,7 +22,7 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
   }
 
   return (
-    <div className='p-5 break-all'>
+    <div className='break-all p-5'>
       {/*<NextSeo*/}
       {/*  openGraph={{*/}
       {/*    title: post.title,*/}
