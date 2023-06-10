@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxSun, RxTwitterLogo } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
+import { Zenn } from '@/components/icons/Zenn'
 import { useTheme } from '@/hooks/theme'
 
 export const DesktopHeader: FC = () => {
@@ -40,13 +41,19 @@ export const DesktopHeader: FC = () => {
           popoverText={'GitHub'}
           target={'_blank'}
         />
+        <HeaderNavigationLink
+          href={'https://zenn.dev/nekoze_da'}
+          icon={Zenn}
+          popoverText={'Zenn'}
+          target={'_blank'}
+        />
       </ul>
       <div className='-mx-4 hidden md:flex lg:items-center'>
         <button onClick={() => toggleDarkMode(!isDark)}>
           {isDark ? (
-            <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />
-          ) : (
             <HeaderNavigationLink href={`${pathName}/#`} icon={RxMoon} />
+          ) : (
+            <HeaderNavigationLink href={`${pathName}/#`} icon={RxSun} />
           )}
         </button>
       </div>
