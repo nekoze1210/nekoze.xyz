@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxSun, RxTwitterLogo } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
+import { Zenn } from '@/components/icons/Zenn'
 import { useTheme } from '@/hooks/theme'
 
 export const DesktopHeader: FC = () => {
@@ -38,6 +39,12 @@ export const DesktopHeader: FC = () => {
           href={'https://github.com/nekoze1210'}
           icon={RxGithubLogo}
           popoverText={'GitHub'}
+          target={'_blank'}
+        />
+        <HeaderNavigationLink
+          href={'https://zenn.dev/nekoze_da'}
+          icon={Zenn}
+          popoverText={'Zenn'}
           target={'_blank'}
         />
       </ul>

@@ -14,7 +14,9 @@ import {
 } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
+import { Zenn } from '@/components/icons/Zenn'
 import { useTheme } from '@/hooks/theme'
+
 export const MobileHeader: FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { isDark, toggleDarkMode } = useTheme()
@@ -84,6 +86,15 @@ export const MobileHeader: FC = () => {
               href={'https://github.com/nekoze1210'}
               icon={RxGithubLogo}
               popoverText={'GitHub'}
+              target={'_blank'}
+              onClick={() => setIsOpen(false)}
+            />
+          </li>
+          <li className={`ml-1 flex justify-start rounded-[10px]`}>
+            <HeaderNavigationLink
+              href={'https://zenn.dev/nekoze_da'}
+              icon={Zenn}
+              popoverText={'Zenn'}
               target={'_blank'}
               onClick={() => setIsOpen(false)}
             />
