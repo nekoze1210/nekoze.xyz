@@ -1,6 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import React from 'react'
+import { RxExternalLink } from 'react-icons/rx'
 
 import Tile from '@/components/portfolio/Tile'
 import TileItem from '@/components/portfolio/TileItem'
@@ -46,18 +48,20 @@ const WorkExperiences = () => {
             </TileItemText>
           </TileItem>
         ))}
-        {/*<div className={'flex justify-end items-end mt-5'}>*/}
-        {/*  <Link*/}
-        {/*    href={'/'}*/}
-        {/*    target={'_blank'}*/}
-        {/*    className={'flex items-end border-b-[1px] hover:text-blue-400 hover:border-blue-400'}*/}
-        {/*  >*/}
-        {/*    <p>Resume(JA)</p>*/}
-        {/*    <p className={'ml-1'}>*/}
-        {/*      <RxExternalLink />*/}
-        {/*    </p>*/}
-        {/*  </Link>*/}
-        {/*</div>*/}
+        <div className={'mt-5 flex items-end justify-end'}>
+          <Link
+            href={'https://nekoze-dev.notion.site/2af1ff5ca435412dabaaf576a8a6a923'}
+            target={'_blank'}
+            className={
+              'flex items-end border-b-[1px] hover:bg-gradient-to-br hover:from-[#FF4D6B] hover:to-[#5B69B1] hover:bg-clip-text hover:text-transparent'
+            }
+          >
+            <p>Resume(JA)</p>
+            <p className={'ml-1 text-black'}>
+              <RxExternalLink />
+            </p>
+          </Link>
+        </div>
       </Tile>
     </>
   )
