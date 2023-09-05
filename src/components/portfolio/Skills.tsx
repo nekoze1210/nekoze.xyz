@@ -11,7 +11,7 @@ const Skills: FC = () => {
   const skills = [
     {
       category: 'Front-end skills',
-      description: 'HTML/CSS/JavaScript,TypeScript, React, Next.js, Vue',
+      description: 'HTML/CSS/JavaScript, TypeScript, React, Next.js, Vue',
     },
     {
       category: 'Back-end skills',
