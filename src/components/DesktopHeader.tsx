@@ -1,8 +1,9 @@
 import { usePathname } from 'next/navigation'
 import { FC } from 'react'
-import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxSun, RxTwitterLogo } from 'react-icons/rx'
+import { RxFileText, RxGithubLogo, RxHome, RxMoon, RxSun } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
+import { X } from '@/components/icons/X'
 import { Zenn } from '@/components/icons/Zenn'
 import { useTheme } from '@/hooks/theme'
 
@@ -30,9 +31,9 @@ export const DesktopHeader: FC = () => {
           <HeaderNavigationLink href={'/posts'} icon={RxFileText} popoverText={'Posts'} />
         </li>
         <HeaderNavigationLink
-          href={'https://twitter.com/nekoze_da'}
-          icon={RxTwitterLogo}
-          popoverText={'Twitter'}
+          href={'https://x.com/nekoze_da'}
+          icon={X}
+          popoverText={'X'}
           target={'_blank'}
         />
         <HeaderNavigationLink
