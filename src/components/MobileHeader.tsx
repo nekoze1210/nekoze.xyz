@@ -10,10 +10,10 @@ import {
   RxHome,
   RxMoon,
   RxSun,
-  RxTwitterLogo,
 } from 'react-icons/rx'
 
 import { HeaderNavigationLink } from '@/components/HeaderNavigationLink'
+import { X } from '@/components/icons/X'
 import { Zenn } from '@/components/icons/Zenn'
 import { useTheme } from '@/hooks/theme'
 
@@ -72,11 +72,11 @@ export const MobileHeader: FC = () => {
               onClick={() => setIsOpen(false)}
             />
           </li>
-          <li className={`rounded-[10px]} ml-1 flex justify-start`}>
+          <li className={`ml-1 flex justify-start rounded-[10px]`}>
             <HeaderNavigationLink
-              href={'https://twitter.com/nekoze_da'}
-              icon={RxTwitterLogo}
-              popoverText={'Twitter'}
+              href={'https://x.com/nekoze_da'}
+              icon={X}
+              popoverText={'X'}
               target={'_blank'}
               onClick={() => setIsOpen(false)}
             />
