@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import React from 'react'
 
 import { renderPostBlock } from '@/components/PostBlock'
+import { ShareButtons } from '@/components/ShareButtons'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
 
 export async function generateStaticParams() {
@@ -46,6 +47,10 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
           })}
         </div>
       </article>
+      <ShareButtons
+        title={data.title}
+        url={`${process.env.SITE_URL}/posts/${data.slug}`}
+      ></ShareButtons>
     </div>
   )
 }
