@@ -1,11 +1,11 @@
 'use client'
 import { HatenaIcon, HatenaShareButton } from 'react-share'
 
-type Props = {
+export interface ShareButtonsProps {
   title: string
   url: string
 }
-export const ShareButtons = ({ title, url }: Props) => {
+export const ShareButtons = ({ title, url }: ShareButtonsProps) => {
   return (
     <HatenaShareButton title={title} url={url}>
       <HatenaIcon size={32}></HatenaIcon>

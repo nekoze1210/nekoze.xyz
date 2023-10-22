@@ -4,13 +4,21 @@ import { IconType } from 'react-icons'
 
 import { HeaderPopover } from '@/components/HeaderPopover'
 
-export const HeaderNavigationLink: FC<{
+export interface HeaderNavigationLinkProps {
   href: string
   icon: IconType
   popoverText?: string
   target?: string | 'self'
   onClick?: () => void
-}> = ({ href, icon, popoverText, target, onClick }) => {
+}
+
+export const HeaderNavigationLink: FC<HeaderNavigationLinkProps> = ({
+  href,
+  icon,
+  popoverText,
+  target,
+  onClick,
+}) => {
   const [hovered, setHovered] = useState(false)
   return (
     <>
