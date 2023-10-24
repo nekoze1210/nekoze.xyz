@@ -1,5 +1,5 @@
 'use client'
-import '@/styles/globals.scss'
+import '@/styles/globals.css'
 import 'react-medium-image-zoom/dist/styles.css'
 import { DefaultSeo } from 'next-seo'
 

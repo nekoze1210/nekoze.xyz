@@ -1,6 +1,6 @@
 'use client'
 
-import '@/styles/globals.scss'
+import '@/styles/globals.css'
 import { Noto_Sans_JP } from 'next/font/google'
 
 import { DesktopHeader } from '@/components/DesktopHeader'

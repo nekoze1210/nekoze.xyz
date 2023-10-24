@@ -9,7 +9,7 @@ import { PostPage } from '@/types/post'
 export const PostThumbnail: FC<PostPage> = (post: PostPage) => {
   return (
     <li
-      className='mt-3 border-t border-aluminium first:border-t-0 dark:border-abbey dark:bg-cod-gray'
+      className='mt-3 list-none border-t border-aluminium first:border-t-0 dark:border-abbey dark:bg-cod-gray'
       key={post.id}
     >
       {post.thumbnailImageUrl ? (

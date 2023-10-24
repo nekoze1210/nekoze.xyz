@@ -13,6 +13,5 @@
     "selector-class-pattern": null,
     "font-family-name-quotes": null
   },
-  "ignoreFiles": ["**/node_modules/**"],
-  "customSyntax": "postcss-scss"
+  "ignoreFiles": ["**/node_modules/**"]
 }
