@@ -38,7 +38,7 @@
     "react-medium-image-zoom": "^5.1.2",
     "react-share": "^4.4.1",
     "react-use": "^17.4.0",
-    "sharp": "^0.31.3"
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@locator/babel-jsx": "^0.2.4",
