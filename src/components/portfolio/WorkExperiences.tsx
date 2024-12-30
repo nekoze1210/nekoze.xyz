@@ -13,6 +13,11 @@ import TileTitle from '@/components/portfolio/TileTitle'
 const WorkExperiences = () => {
   const workExperiences = [
     {
+      company: 'ABEL, Inc.',
+      employmentStatus: 'Contract',
+      period: '2023-present',
+    },
+    {
       company: 'Gaudiy Inc.',
       employmentStatus: 'Full-Time',
       period: '2023-present',

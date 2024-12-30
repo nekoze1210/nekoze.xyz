@@ -11,15 +11,15 @@ const Skills: FC = () => {
   const skills = [
     {
       category: 'Front-end skills',
-      description: 'HTML/CSS/JavaScript, TypeScript, React, Next.js, Vue',
+      description: 'HTML/CSS/JavaScript, TypeScript, React, React Native, Next.js, Vue',
     },
     {
       category: 'Back-end skills',
-      description: 'Ruby, Golang, TypeScript, Node.js',
+      description: 'Golang, TypeScript, Python, Node.js, Ruby',
     },
     {
       category: 'Tools, Service',
-      description: 'GCP, AWS, Git, Docker, Notion',
+      description: 'GCP, AWS, OpenAI, v0, Vercel, GitHub, Docker, Notion, Helpfeel Cosense',
     },
   ]
   return (
