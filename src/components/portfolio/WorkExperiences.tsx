@@ -15,7 +15,7 @@ const WorkExperiences = () => {
     {
       company: 'ABEL, Inc.',
       employmentStatus: 'Contract',
-      period: '2023-present',
+      period: '2024-present',
     },
     {
       company: 'Gaudiy Inc.',
