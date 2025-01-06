@@ -39,6 +39,8 @@ yarn-error.log*
 
 # post images
 public/post-images/
+# ogp images
+public/ogp/
 
 # sitemap
 public/sitemap*.xml

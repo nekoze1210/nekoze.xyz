@@ -25,6 +25,7 @@
   "dependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.3",
+    "@napi-rs/canvas": "^0.1.65",
     "@notionhq/client": "^2.2.3",
     "axios": "^1.2.2",
     "dayjs": "^1.11.7",

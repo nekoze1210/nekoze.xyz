@@ -5,14 +5,18 @@ import React from 'react'
 import { renderPostBlock } from '@/components/PostBlock'
 import { ShareButtons } from '@/components/ShareButtons'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
+import { generatePostOgpImage } from '@/infra/ogp/generator'
 
 export async function generateStaticParams() {
   const posts = await listPublicPages()
-  const paths = posts.map((post) => {
-    return {
+  const paths = []
+  for (const post of posts) {
+    const path = await generatePostOgpImage(post.id, post.title)
+    paths.push({
       slug: post.slug,
-    }
-  })
+      ogpImagePath: path,
+    })
+  }
   return [...paths]
 }
 
@@ -54,8 +58,6 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
     </div>
   )
 }
-
-// export default Post
 
 const getData = async (params: { slug: string }) => {
   const { slug } = params
