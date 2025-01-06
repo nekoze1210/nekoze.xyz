@@ -6,6 +6,7 @@ const { sources } = require('next/dist/compiled/webpack/webpack')
 module.exports = {
   experimental: {
     appDir: true,
+    serverComponentsExternalPackages: ['@napi-rs/canvas'],
   },
   reactStrictMode: true,
   sassOptions: {
