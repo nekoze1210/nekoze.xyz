@@ -36,9 +36,15 @@ export const generatePostOgpImage = async (id: string, title: string) => {
     y += lineHeight
   })
 
-  // 生成した画像をファイルとして保存
+  // 保存先ディレクトリをチェックし、必要なら作成
+  const outputDir = './public/ogp'
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true }) // ディレクトリがなければ作成
+  }
+
+  // 画像を保存
   const buffer = canvas.toBuffer('image/png')
-  fs.writeFileSync(`./public/ogp/${id}.png`, buffer)
+  fs.writeFileSync(`${outputDir}/${id}.png`, buffer)
 
   return `/ogp/${id}.png`
 }
