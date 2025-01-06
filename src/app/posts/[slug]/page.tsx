@@ -38,6 +38,11 @@ export async function generateMetadata({
   return {
     title: metadata.title,
     openGraph: {
+      title: metadata.title,
+      description: metadata.title,
+      siteName: 'nekoze.xyz',
+      type: 'article',
+      url: `${process.env.SITE_URL}/posts/${params.slug}`,
       images: [
         {
           url: metadata.ogpImagePath,
