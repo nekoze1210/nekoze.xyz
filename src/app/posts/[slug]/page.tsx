@@ -1,11 +1,12 @@
 import dayjs from 'dayjs'
-// import { NextSeo } from 'next-seo'
+import { NextSeo } from 'next-seo'
 import React from 'react'
 
 import { renderPostBlock } from '@/components/PostBlock'
 import { ShareButtons } from '@/components/ShareButtons'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
 import { generatePostOgpImage } from '@/infra/ogp/generator'
+import { Tag } from '@/types/post'
 
 export async function generateStaticParams() {
   const posts = await listPublicPages()
@@ -20,7 +21,11 @@ export async function generateStaticParams() {
   return [...paths]
 }
 
-export default async function PostDetailPage({ params }: { params: { slug: string } }) {
+export default async function PostDetailPage({
+  params,
+}: {
+  params: { slug: string; ogpImagePath: string }
+}) {
   const data = await getData(params)
   if (!data) {
     return <div>ページが存在しません</div>
@@ -28,18 +33,26 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
 
   return (
     <div className='break-all p-5'>
-      {/*<NextSeo*/}
-      {/*  openGraph={{*/}
-      {/*    title: post.title,*/}
-      {/*    type: 'article',*/}
-      {/*    url: `${process.env.BLOG_SITE_URL}/${post.slug}`,*/}
-      {/*    article: {*/}
-      {/*      authors: ['@nekoze_da'],*/}
-      {/*      publishedTime: dayjs(post.date).format(),*/}
-      {/*      tags: post.tags.map((tag: Tag) => tag.name),*/}
-      {/*    },*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <NextSeo
+        openGraph={{
+          title: data.title,
+          type: 'article',
+          url: `${process.env.BLOG_SITE_URL}/${data.slug}`,
+          images: [
+            {
+              url: `${process.env.BLOG_SITE_URL}${params.ogpImagePath}`,
+              width: 1200,
+              height: 630,
+              alt: data.title,
+            },
+          ],
+          article: {
+            authors: ['@nekoze_da'],
+            publishedTime: dayjs(data.date).format(),
+            tags: data.tags.map((tag: Tag) => tag.name),
+          },
+        }}
+      />
       <article>
         <h1 className='text-2xl font-bold tracking-tight'>{data.title}</h1>
         <time>

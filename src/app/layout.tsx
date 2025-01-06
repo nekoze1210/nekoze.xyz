@@ -2,6 +2,7 @@
 
 import '@/styles/globals.css'
 import { Noto_Sans_JP } from 'next/font/google'
+import { NextSeo } from 'next-seo'
 
 import { DesktopHeader } from '@/components/DesktopHeader'
 import { MobileHeader } from '@/components/MobileHeader'
@@ -11,6 +12,9 @@ const notoSansJp = Noto_Sans_JP({ subsets: ['latin'] })
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='ja-JP'>
+      <head>
+        <NextSeo useAppDir={true}></NextSeo>
+      </head>
       <body
         className={`bg-wild-sand text-black dark:bg-cod-gray dark:text-white ${notoSansJp.className}`}
       >
