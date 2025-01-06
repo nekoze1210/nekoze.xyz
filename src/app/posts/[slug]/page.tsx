@@ -1,12 +1,11 @@
 import dayjs from 'dayjs'
-import { NextSeo } from 'next-seo'
+import { Metadata } from 'next'
 import React from 'react'
 
 import { renderPostBlock } from '@/components/PostBlock'
 import { ShareButtons } from '@/components/ShareButtons'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
 import { generatePostOgpImage } from '@/infra/ogp/generator'
-import { Tag } from '@/types/post'
 
 export async function generateStaticParams() {
   const posts = await listPublicPages()
@@ -14,11 +13,31 @@ export async function generateStaticParams() {
   for (const post of posts) {
     const path = await generatePostOgpImage(post.id, post.title)
     paths.push({
+      title: post.title,
       slug: post.slug,
       ogpImagePath: path,
     })
   }
   return [...paths]
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { title: string; slug: string; ogpImagePath: string }
+}): Promise<Metadata> {
+  return {
+    title: params.title,
+    openGraph: {
+      images: [
+        {
+          url: params.ogpImagePath,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  }
 }
 
 export default async function PostDetailPage({
@@ -33,26 +52,6 @@ export default async function PostDetailPage({
 
   return (
     <div className='break-all p-5'>
-      <NextSeo
-        openGraph={{
-          title: data.title,
-          type: 'article',
-          url: `${process.env.BLOG_SITE_URL}/${data.slug}`,
-          images: [
-            {
-              url: `${process.env.BLOG_SITE_URL}${params.ogpImagePath}`,
-              width: 1200,
-              height: 630,
-              alt: data.title,
-            },
-          ],
-          article: {
-            authors: ['@nekoze_da'],
-            publishedTime: dayjs(data.date).format(),
-            tags: data.tags.map((tag: Tag) => tag.name),
-          },
-        }}
-      />
       <article>
         <h1 className='text-2xl font-bold tracking-tight'>{data.title}</h1>
         <time>
