@@ -7,15 +7,19 @@ import { ShareButtons } from '@/components/ShareButtons'
 import { getPublicPageContentsBySlug, listPublicPages } from '@/infra/notionApi/client'
 import { generatePostOgpImage } from '@/infra/ogp/generator'
 
+const postMetadataMap = new Map<string, { title: string; ogpImagePath: string }>()
+
 export async function generateStaticParams() {
   const posts = await listPublicPages()
   const paths = []
   for (const post of posts) {
-    const path = await generatePostOgpImage(post.id, post.title)
+    const ogpImagePath = await generatePostOgpImage(post.id, post.title)
     paths.push({
-      title: post.title,
       slug: post.slug,
-      ogpImagePath: path,
+    })
+    postMetadataMap.set(post.slug, {
+      title: post.title,
+      ogpImagePath,
     })
   }
   return [...paths]
@@ -24,14 +28,19 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { title: string; slug: string; ogpImagePath: string }
+  params: { slug: string }
 }): Promise<Metadata> {
+  const metadata = postMetadataMap.get(params.slug)
+
+  if (!metadata) {
+    throw new Error(`Metadata for slug ${params.slug} not found`)
+  }
   return {
-    title: params.title,
+    title: metadata.title,
     openGraph: {
       images: [
         {
-          url: params.ogpImagePath,
+          url: metadata.ogpImagePath,
           width: 1200,
           height: 630,
         },
